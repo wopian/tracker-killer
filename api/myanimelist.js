@@ -14,52 +14,46 @@ export default function myanimelist () {
     const api = new MALjs(env.username, env.password);
     let i = 1;
 
-    function add (i) {
-        const deferred = Q.defer()
-        const padded = pad(i, 5, '0')
+    let temp = Q.when({})
+    const anime = Array.apply(null, {length: 35087}).map(Number.call, Number)
 
-        log(`${padded}\t${chalk.yellow('request')}`)
+    anime.forEach(element => {
+        temp = temp.then(() => {
+            return delay(element + 1)
+        })
+    })
 
-        api.anime.add(i, {
-            status: '2' // completed
-        })
-        .then(result => {
-            log(`${padded}\t${chalk.green('added')}`)
-            deferred.resolve();
-        })
-        .catch(err => update(i))
+    function delay(timing) {
+        var deferred = Q.defer()
+
+        var timer = setInterval(() => {
+            const padded = pad(timing, 5, '0')
+
+            log(padded + chalk.yellow('\trequest'))
+
+            api.anime.add(timing, {
+                status: '2' // completed
+            })
+            .then(result => {
+                log(padded + chalk.green('\tadded'))
+                deferred.resolve(timing)
+            })
+            .catch(err => {
+                log(padded + chalk.red('\tfailed'))
+                deferred.resolve(timing)
+            })
+            clearTimeout(timer)
+        }, 100)
 
         return deferred.promise
     }
 
-    function update(i) {
-        const deferred = Q.defer()
-        const padded = pad(i, 5, '0')
-
-        log(`${padded}\t${chalk.magenta('update')}`)
-
-        api.anime.update(i, {
-            status: '2' // completed
-        })
-        .then(result => {
-            log(`${padded}\t${chalk.green('updated')}`)
-            deferred.resolve();
-        })
-        .catch(err => log(`${padded}\t${chalk.red('failed')}`))
-
-        return deferred.promise
-    }
-
-    function run () {
-        var deferred = Q.defer();
-        deferred.resolve();
-        return deferred.promise;
-    }
-
+    /*
     while (i < 35087) {
         run()
         .then(add(i))
         .then(i++)
         .then(sleep(1000))
     }
+    */
 }
