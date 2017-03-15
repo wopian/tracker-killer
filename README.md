@@ -60,13 +60,21 @@ the following code inside it:
             client_id: 'yourclientid',
             client_secret: 'yourclientsecret'
         },
-        KITSU: {},
+        KITSU: {
+            username: 'yourusername'
+        },
         MYANIMELIST: {
             username: 'yourusername',
             password: 'yourpassword'
         }
     }
     ```
+
+### Running
+Enter the command below and use the arrow keys to select the service to test with.
+```bash
+npm start
+```
 
 ## Testing MyAnimeList
 ### Output
