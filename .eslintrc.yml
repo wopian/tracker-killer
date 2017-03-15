@@ -1,0 +1,6 @@
+root: true
+extends: standard
+parserOptions:
+  ecmaVersion: 7
+  ecmaFeatures:
+    modules: true
