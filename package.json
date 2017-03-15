@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/wopian/tracker-killer#readme",
   "dependencies": {
+    "MALjs": "~0.1.0",
     "anilist-api-pt": "~1.0.0",
     "axios": "~0.15.3",
     "babel-cli": "~6.24.0",
