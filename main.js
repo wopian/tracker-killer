@@ -56,22 +56,22 @@ input.prompt([
   answer.service.forEach(service => {
     switch (service) {
       case ('AniDB'):
-        anidb(answer.type)
+        anidb(service, answer.type)
         break
       case ('AniList'):
-        anilist(answer.type)
+        anilist(service, answer.type)
         break
       case ('AnimePlanet'):
-        animeplanet(answer.type)
+        animeplanet(service, answer.type)
         break
       case ('Annict'):
-        annict(answer.type)
+        annict(service, answer.type)
         break
       case ('Kitsu'):
-        kitsu(answer.type)
+        kitsu(service, answer.type)
         break
       case ('MyAnimeList'):
-        myanimelist(answer.type)
+        myanimelist(service, answer.type)
         break
     }
   })

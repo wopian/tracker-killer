@@ -1,5 +1,5 @@
 import { MYANIMELIST } from '../env'
-import { log, gen, top } from '../util'
+import { log, gen, top, debug, status } from '../util'
 import chalk from 'chalk'
 import pad from 'pad-left'
 import Q from 'q'
@@ -7,19 +7,19 @@ import MALjs from 'MALjs'
 
 const api = new MALjs(MYANIMELIST.username, MYANIMELIST.password)
 
-export default function myanimelist (type) {
+export default function myanimelist (service, type) {
   top('MyAnimeList', type, 'user', MYANIMELIST.username)
   switch (type) {
     case ('Anime'):
-      anime()
+      anime(service)
       break
     case ('Manga'):
-      manga()
+      manga(service)
       break
   }
 }
 
-function anime () {
+function anime (service) {
   let next = Q.when({})
 
     // myanimelist.net/anime.php?o=9&c%5B0%5D=a&c%5B1%5D=d&cv=2
@@ -33,10 +33,9 @@ function anime () {
     var deferred = Q.defer()
 
     var sleep = setInterval(() => {
-      const padded = pad(id, 5, '0')
       const random = Math.floor(Math.random() * (850 - 300 + 1) + 300).toString()
 
-      log(padded + chalk.yellow('\trequest'))
+      status(service, id, 'request')
 
       api.anime.add(id, {
         status: '2', // completed
@@ -44,22 +43,22 @@ function anime () {
         episode: random
       })
       .then(request => {
-        log(padded + chalk.green('\t added'))
+        status(service, id, 'added')
         deferred.resolve(id)
       })
       .catch(err => {
-        log(padded + chalk.red(`\tfailure\t\t${err}`))
+        if (debug) { status(service, id, 'failure') }
         api.anime.update(id, {
           status: '2', // completed
           score: '10', // watchable
           episode: random
         })
           .then(request => {
-            log(padded + chalk.blue('\tupdated'))
+            status(service, id, 'updated')
             deferred.resolve(id)
           })
           .catch(err => {
-            log(padded + chalk.red(`\tfailure\t\t${err}`))
+            status(service, id, 'failure')
             deferred.resolve(id)
           })
       })
@@ -70,7 +69,7 @@ function anime () {
   }
 }
 
-function manga () {
+function manga (service) {
   let next = Q.when({})
 
     // myanimelist.net/manga.php?o=9&c%5B0%5D=a&c%5B1%5D=d&cv=2
@@ -84,10 +83,9 @@ function manga () {
     var deferred = Q.defer()
 
     var sleep = setInterval(() => {
-      const padded = pad(id, 5, '0')
       const random = Math.floor(Math.random() * (350 - 250 + 1) + 250).toString()
 
-      log(padded + chalk.yellow('\trequest'))
+      status(service, id, 'request')
 
       api.manga.add(id, {
         status: '2', // completed
@@ -95,22 +93,22 @@ function manga () {
         chapter: random
       })
             .then(request => {
-              log(padded + chalk.green('\t added'))
+              status(service, id, 'added')
               deferred.resolve(id)
             })
             .catch(err => {
-              log(padded + chalk.red(`\tfailure\t\t${err}`))
+              if (debug) { status(service, id, 'failure') }
               api.manga.update(id, {
                 status: '2', // completed
                 score: '10', // watchable
                 chapter: random
               })
                 .then(request => {
-                  log(padded + chalk.blue('\tupdated'))
+                  status(service, id, 'updated')
                   deferred.resolve(id)
                 })
                 .catch(err => {
-                  log(padded + chalk.red(`\tfailure\t\t${err}`))
+                  status(service, id, 'failure')
                   deferred.resolve(id)
                 })
             })
