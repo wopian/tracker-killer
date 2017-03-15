@@ -16,7 +16,17 @@ input.prompt([
     }
 ])
 .then(answers => {
-    log(JSON.stringify(answers, null, '  '))
+    switch (answers.service) {
+        case ('AniList'):
+            log('Not implemented yet')
+            break
+        case ('Kitsu'):
+            log('Not implemented yet')
+            break
+        case ('MyAnimeList'):
+            myanimelist()
+            break
+    }
 })
 
 // myanimelist()

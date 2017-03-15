@@ -9,9 +9,9 @@ const log = console.log
 
 export default function myanimelist () {
     log(chalk.blue('MyAnimeList Library Filler'))
-    log(chalk.blue(`user\t${env.username}\n`))
+    log(chalk.blue(`user\t${env.myanimelist.username}\n`))
 
-    const api = new MALjs(env.username, env.password);
+    const api = new MALjs(env.myanimelist.username, env.myanimelist.password);
     let i = 1;
 
     let temp = Q.when({})
