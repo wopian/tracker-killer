@@ -10,16 +10,16 @@ It is beneficial for testing how well these sites cope with the following:
 
 ## Results
 
-| Test                      | AniList   | Kitsu | MyAnimeList
-| ------------------------- | --------: | ----: | ----------:
-| Page load time (initial)  | N/A       | N/A   | N/A
-| Page load time (refresh)  | N/A       | N/A   | N/A
-| Render time               | N/A       | N/A   | N/A
-| Paint time (onload)       | N/A       | N/A   | N/A
-| Paint time (loaded)       | N/A       | N/A   | N/A
-| Paint time (scroll)       | N/A       | N/A   | N/A
-| API response time         | N/A       | N/A   | N/A
-| API download size         | N/A       | N/A   | N/A
+| Test                      | AniDB | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
+| ------------------------- | ----: | --------: | ------------: | --------: | ----: | ----------:
+| Page load time (initial)  |       |           |               |           |       |    
+| Page load time (refresh)  |       |           |               |           |       |    
+| Render time               |       |           |               |           |       |    
+| Paint time (onload)       |       |           |               |           |       |    
+| Paint time (loaded)       |       |           |               |           |       |    
+| Paint time (scroll)       |       |           |               |           |       |    
+| API response time         |       |           |               |           |       |    
+| API download size         |       |           |               |           |       |    
 
 ## Usage
 
