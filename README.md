@@ -11,15 +11,15 @@ It is beneficial for testing how well these sites cope with the following:
 ### Anime
 Test                        | AniDB | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
 --------------------------- | ----: | --------: | ------------: | --------: | ----: | ----------:
-Anime count                 |       |           |               |           |       | 12608
-Page load time (initial)    |       |           |               |           |       |
-Page load time (refresh)    |       |           |               |           |       |
-Render time                 |       |           |               |           |       |
-Paint time (onload)         |       |           |               |           |       |
-Paint time (loaded)         |       |           |               |           |       |
-Paint time (scroll)         |       |           |               |           |       |
-API response time           |       |           |               |           |       |
-API download size           |       |           |               |           |       |
+Anime count                 |       |           |               |           |       | 12603
+Page load time (initial)    |       |           |               |           |       | 42.8 sec
+Page load time (refresh)    |       |           |               |           |       | 42.5 sec
+Loading time                |       |           |               |           |       | 2.3 sec
+Render time                 |       |           |               |           |       | 22.8 sec
+Script time                 |       |           |               |           |       | 11.2 sec
+Paint time                  |       |           |               |           |       | 0.7 sec
+API response time           |       |           |               |           |       | 5.2 sec
+API download size           |       |           |               |           |       | 10.1 MB (XML)
 
 ### Manga
 Test                        | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList

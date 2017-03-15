@@ -6,8 +6,8 @@
   "author": "James Harris <wopian@wopian.me>",
   "scripts": {
     "start": "babel-node --presets es2015,stage-0 main.js",
-    "dev": "cross-env DEBUG=true npm start",
-    "d": "npm run dev"
+    "debug": "cross-env DEBUG=true npm start",
+    "d": "npm run debug"
   },
   "main": "main.js",
   "repository": {
