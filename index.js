@@ -14,36 +14,58 @@ input.prompt([
         name: 'service',
         message: 'Select service to test:',
         choices: [
-            'AniDB',
-            'AniList',
-            'AnimePlanet',
-            'Annict',
-            'Kitsu',
+            {
+                name: 'AniDB',
+                disabled: 'not implemented'
+            },
+            {
+                name: 'AniList',
+                disabled: 'not implemented'
+            },
+            {
+                name: 'AnimePlanet',
+                disabled: 'no api'
+            },
+            {
+                name: 'Annict',
+                disabled: 'not implemented'
+            },
+            {
+                name: 'Kitsu',
+                disabled: 'not implemented'
+            },
             'MyAnimeList'
+        ]
+    },
+    {
+        type: 'list',
+        name: 'type',
+        message: 'Library type to use:',
+        choices: [
+            'Anime',
+            'Manga'
         ]
     }
 ])
-.then(answers => {
-    switch (answers.service) {
+.then(answer => {
+    switch (answer.service) {
         case ('AniDB'):
-            anidb()
+            anidb(answer.type)
             break
         case ('AniList'):
-            anilist()
+            anilist(answer.type)
             break
         case ('AnimePlanet'):
-            animeplanet()
+            animeplanet(answer.type)
             break
         case ('Annict'):
-            annict()
+            annict(answer.type)
             break
         case ('Kitsu'):
-            kitsu()
+            kitsu(answer.type)
             break
         case ('MyAnimeList'):
-            myanimelist()
+            myanimelist(answer.type)
             break
     }
 })
-
-// myanimelist()
