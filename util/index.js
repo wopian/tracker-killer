@@ -25,7 +25,7 @@ export function top (service, type, user) {
 }
 
 export function status (service, id, status) {
-  function statusColoured () {
+  function symbols () {
     switch (status) {
       case 'request':
         return chalk.grey('•') // ╭╮
@@ -37,7 +37,7 @@ export function status (service, id, status) {
         return chalk.red('╳') // ┆┆
     }
   }
-  log(`${colourService(pad(service, 11, ' '), service)} ${colourService(pad(id, 5, ' '), service)} ${statusColoured()}`)
+  log(`${colourService(pad(service, 11, ' '), service)} ${colourService(pad(id, 5, ' '), service)} ${symbols()}`)
 }
 
 export const debug = process.env.DEBUG
