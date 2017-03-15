@@ -56,7 +56,7 @@ API download size           |           |               |           |       |
     npm i
     ```
 
-3. Create a file named `env.js` where `index.js` is. Copy and paste
+3. Create a file named `env.js` where `main.js` is. Copy and paste
 the following code inside it:
 
     ```javascript
