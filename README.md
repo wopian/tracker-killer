@@ -55,9 +55,13 @@ the following code inside it:
 
     ```javascript
     module.exports = {
-        anilist: {},
-        kitsu: {},
-        myanimelist: {
+        ANILIST: {
+            username: 'yourusername',
+            client_id: 'yourclientid',
+            client_secret: 'yourclientsecret'
+        },
+        KITSU: {},
+        MYANIMELIST: {
             username: 'yourusername',
             password: 'yourpassword'
         }

@@ -1,4 +1,4 @@
-import env from '../env'
+import {MYANIMELIST} from '../env'
 import chalk from 'chalk'
 import pad from 'pad-left'
 import Q from 'q'
@@ -8,9 +8,9 @@ const log = console.log
 
 export default function myanimelist () {
     log(chalk.blue('MyAnimeList Library Filler'))
-    log(chalk.blue(`user\t${env.myanimelist.username}\n`))
+    log(chalk.blue(`user\t${MYANIMELIST.username}\n`))
 
-    const api = new MALjs(env.myanimelist.username, env.myanimelist.password);
+    const api = new MALjs(MYANIMELIST.username, MYANIMELIST.password);
     let i = 1;
 
     let temp = Q.when({})
