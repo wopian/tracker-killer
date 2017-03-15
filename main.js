@@ -54,7 +54,6 @@ input.prompt([
     }
 ])
 .then(answer => {
-    console.log(answer)
     answer.service.forEach(service => {
         switch (service) {
             case ('AniDB'):
