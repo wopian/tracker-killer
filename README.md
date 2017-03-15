@@ -65,4 +65,11 @@ the following code inside it:
     ```
 
 ## Testing MyAnimeList
-
+### Output
+```bash
+00000               # MAL media ID
+00000   request     # sent request to add media to library
+00000    added      # media added to library  - marked as Completed and rated 10/10
+00000   updated     # media exists in library -  "                               "
+00000   failure     # deleted on MAL or is already in Completed and rated 10/10
+```
