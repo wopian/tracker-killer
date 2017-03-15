@@ -1,4 +1,5 @@
 import input from 'inquirer'
+import anilist from './api/anilist'
 import myanimelist from './api/myanimelist'
 
 const log = console.log
@@ -18,7 +19,7 @@ input.prompt([
 .then(answers => {
     switch (answers.service) {
         case ('AniList'):
-            log('Not implemented yet')
+            anilist()
             break
         case ('Kitsu'):
             log('Not implemented yet')
