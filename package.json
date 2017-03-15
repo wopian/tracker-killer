@@ -1,11 +1,20 @@
 {
   "name": "tracker-killer",
   "version": "0.1.0",
-  "license": "MIT",
   "description": "Stress test anime tracking sites",
+  "license": "MIT",
+  "author": "James Harris <wopian@wopian.me>",
   "scripts": {
     "start": "babel-node --presets es2015 index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wopian/tracker-killer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wopian/tracker-killer/issues"
+  },
+  "homepage": "https://github.com/wopian/tracker-killer#readme",
   "dependencies": {
     "anilist-api-pt": "~1.0.0",
     "axios": "^0.15.3",
