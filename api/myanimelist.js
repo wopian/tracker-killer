@@ -1,5 +1,4 @@
 import env from '../env'
-import sleep from 'thread-sleep'
 import chalk from 'chalk'
 import pad from 'pad-left'
 import Q from 'q'
