@@ -10,7 +10,7 @@ const log = console.log
 
 input.prompt([
     {
-        type: 'list',
+        type: 'checkbox',
         name: 'service',
         message: 'Select service to test:',
         choices: [
@@ -35,7 +35,13 @@ input.prompt([
                 disabled: 'not implemented'
             },
             'MyAnimeList'
-        ]
+        ],
+        validate: answer => {
+            if (answer.length < 1) {
+                return 'Select at least one service'
+            }
+            return true
+        }
     },
     {
         type: 'list',
