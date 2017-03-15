@@ -54,24 +54,27 @@ input.prompt([
     }
 ])
 .then(answer => {
-    switch (answer.service) {
-        case ('AniDB'):
-            anidb(answer.type)
-            break
-        case ('AniList'):
-            anilist(answer.type)
-            break
-        case ('AnimePlanet'):
-            animeplanet(answer.type)
-            break
-        case ('Annict'):
-            annict(answer.type)
-            break
-        case ('Kitsu'):
-            kitsu(answer.type)
-            break
-        case ('MyAnimeList'):
-            myanimelist(answer.type)
-            break
-    }
+    console.log(answer)
+    answer.service.forEach(service => {
+        switch (service) {
+            case ('AniDB'):
+                anidb(answer.type)
+                break
+            case ('AniList'):
+                anilist(answer.type)
+                break
+            case ('AnimePlanet'):
+                animeplanet(answer.type)
+                break
+            case ('Annict'):
+                annict(answer.type)
+                break
+            case ('Kitsu'):
+                kitsu(answer.type)
+                break
+            case ('MyAnimeList'):
+                myanimelist(answer.type)
+                break
+        }
+    })
 })
