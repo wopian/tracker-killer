@@ -62,13 +62,7 @@ API download size           |           |               |           |       |
     npm i
     ```
 
-3. Add this repository as origin:
-
-    ```bash
-    git remote add origin https://github.com/wopian/hibari.git
-    ```
-
-4. Create a file named `env.js` where `index.js` is. Copy and paste
+3. Create a file named `env.js` where `index.js` is. Copy and paste
 the following code inside it:
 
     ```javascript
