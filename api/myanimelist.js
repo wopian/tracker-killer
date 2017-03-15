@@ -1,10 +1,9 @@
 import {MYANIMELIST} from '../env'
+import {log} from '../util'
 import chalk from 'chalk'
 import pad from 'pad-left'
 import Q from 'q'
 import MALjs from 'MALjs'
-
-const log = console.log
 
 export default function myanimelist () {
     log(chalk.blue('MyAnimeList Library Filler'))
