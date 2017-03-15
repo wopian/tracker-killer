@@ -1,10 +1,9 @@
 import {ANILIST} from '../env'
+import {log} from '../util'
 import chalk from 'chalk'
 import pad from 'pad-left'
 import Q from 'q'
 import axios from 'axios'
-
-const log = console.log
 
 export default function anilist () {
     log(chalk.blue('AniList Library Filler'))
