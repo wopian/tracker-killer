@@ -1,6 +1,6 @@
 # Tracker Killer
 
-This was built for experimentation purposes with the goal of inspecting how anime tracking sites deal 
+This was built for experimentation purposes with the goal of inspecting how anime tracking sites deal
 with users with ludicrously large libraries.
 
 It is beneficial for testing how well these sites cope with the following:
@@ -12,14 +12,15 @@ It is beneficial for testing how well these sites cope with the following:
 
 | Test                      | AniDB | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
 | ------------------------- | ----: | --------: | ------------: | --------: | ----: | ----------:
-| Page load time (initial)  |       |           |               |           |       |    
-| Page load time (refresh)  |       |           |               |           |       |    
-| Render time               |       |           |               |           |       |    
-| Paint time (onload)       |       |           |               |           |       |    
-| Paint time (loaded)       |       |           |               |           |       |    
-| Paint time (scroll)       |       |           |               |           |       |    
-| API response time         |       |           |               |           |       |    
-| API download size         |       |           |               |           |       |    
+| Anime count               |       |           |               |           |       |
+| Page load time (initial)  |       |           |               |           |       |
+| Page load time (refresh)  |       |           |               |           |       |
+| Render time               |       |           |               |           |       |
+| Paint time (onload)       |       |           |               |           |       |
+| Paint time (loaded)       |       |           |               |           |       |
+| Paint time (scroll)       |       |           |               |           |       |
+| API response time         |       |           |               |           |       |
+| API download size         |       |           |               |           |       |
 
 ## Usage
 
