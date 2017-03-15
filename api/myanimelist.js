@@ -1,14 +1,12 @@
 import { MYANIMELIST } from '../env'
-import { log, gen, top, debug, status } from '../util'
-import chalk from 'chalk'
-import pad from 'pad-left'
+import { gen, top, debug, status } from '../util'
 import Q from 'q'
 import MALjs from 'MALjs'
 
 const api = new MALjs(MYANIMELIST.username, MYANIMELIST.password)
 
 export default function myanimelist (service, type) {
-  top('MyAnimeList', type, 'user', MYANIMELIST.username)
+  top(service, type, MYANIMELIST.username)
   switch (type) {
     case ('Anime'):
       anime(service)
@@ -53,14 +51,14 @@ function anime (service) {
           score: '10', // watchable
           episode: random
         })
-          .then(request => {
-            status(service, id, 'updated')
-            deferred.resolve(id)
-          })
-          .catch(err => {
-            status(service, id, 'failure')
-            deferred.resolve(id)
-          })
+        .then(request => {
+          status(service, id, 'updated')
+          deferred.resolve(id)
+        })
+        .catch(err => {
+          status(service, id, 'failure')
+          deferred.resolve(id)
+        })
       })
       clearTimeout(sleep)
     }, 10)
@@ -92,26 +90,26 @@ function manga (service) {
         score: '10', // watchable
         chapter: random
       })
-            .then(request => {
-              status(service, id, 'added')
-              deferred.resolve(id)
-            })
-            .catch(err => {
-              if (debug) { status(service, id, 'failure') }
-              api.manga.update(id, {
-                status: '2', // completed
-                score: '10', // watchable
-                chapter: random
-              })
-                .then(request => {
-                  status(service, id, 'updated')
-                  deferred.resolve(id)
-                })
-                .catch(err => {
-                  status(service, id, 'failure')
-                  deferred.resolve(id)
-                })
-            })
+      .then(request => {
+        status(service, id, 'added')
+        deferred.resolve(id)
+      })
+      .catch(err => {
+        if (debug) { status(service, id, 'failure') }
+        api.manga.update(id, {
+          status: '2', // completed
+          score: '10', // watchable
+          chapter: random
+        })
+        .then(request => {
+          status(service, id, 'updated')
+          deferred.resolve(id)
+        })
+        .catch(err => {
+          status(service, id, 'failure')
+          deferred.resolve(id)
+        })
+      })
       clearTimeout(sleep)
     }, 10)
 

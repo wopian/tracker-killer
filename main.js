@@ -17,10 +17,7 @@ input.prompt([
         name: 'AniDB',
         disabled: 'not implemented'
       },
-      {
-        name: 'AniList',
-        disabled: 'not implemented'
-      },
+      'AniList',
       {
         name: 'AnimePlanet',
         disabled: 'no api'
@@ -29,10 +26,7 @@ input.prompt([
         name: 'Annict',
         disabled: 'not implemented'
       },
-      {
-        name: 'Kitsu',
-        disabled: 'not implemented'
-      },
+      'Kitsu',
       'MyAnimeList'
     ],
     validate: answer => {

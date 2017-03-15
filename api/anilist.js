@@ -1,12 +1,10 @@
 import { ANILIST } from '../env'
-import { log } from '../util'
-import chalk from 'chalk'
+import { log, top } from '../util'
 import Q from 'q'
 import axios from 'axios'
 
-export default function anilist () {
-  log(chalk.blue('AniList Library Filler'))
-  log(chalk.blue(`client\t${ANILIST.client_id}\n`))
+export default function anilist (service, type) {
+  top(service, type, ANILIST.username)
 
   const client_id = ANILIST.client_id
   const client_secret = ANILIST.client_secret

@@ -7,19 +7,24 @@ export function gen (size) {
   return Array.apply(null, {length: size}).map(Number.call, Number)
 }
 
-export function top (service, type, userType, userName) {
-  log(chalk.blue(`${service} ${type} Library Filler`))
-  log(chalk.blue(`${userType}\t${userName}\n`))
+export function colourService (string, service) {
+  switch (service) {
+    case 'AniList':
+      return chalk.cyan(string)
+    case 'Kitsu':
+      return chalk.yellow(string)
+    case 'MyAnimeList':
+      return chalk.blue(string)
+    default:
+      return string
+  }
+}
+
+export function top (service, type, user) {
+  log(colourService(`${service} ${type} Library Filler\n${user}\n`, service))
 }
 
 export function status (service, id, status) {
-  const servicePadded = pad(service, 11, ' ')
-  function serviceColoured () {
-    switch (service) {
-      case 'MyAnimeList':
-        return chalk.blue(servicePadded)
-    }
-  }
   function statusColoured () {
     switch (status) {
       case 'request':
@@ -32,7 +37,7 @@ export function status (service, id, status) {
         return chalk.red('╳') // ┆┆
     }
   }
-  log(`${serviceColoured()} ${chalk.blue(pad(id, 5, ' '))} ${statusColoured()}`)
+  log(`${colourService(pad(service, 11, ' '), service)} ${colourService(pad(id, 5, ' '), service)} ${statusColoured()}`)
 }
 
 export const debug = process.env.DEBUG

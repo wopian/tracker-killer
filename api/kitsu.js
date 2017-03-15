@@ -1,14 +1,13 @@
 import { KITSU } from '../env'
-import { log } from '../util'
+import { log, top } from '../util'
 import chalk from 'chalk'
 import axios from 'axios'
 import OAuth2 from 'client-oauth2'
 
 const baseUrl = 'https://kitsu.io/api'
 
-export default async function kitsu () {
-  log(chalk.blue('Kitsu Library Filler'))
-  log(chalk.blue(`user\t${KITSU.username}\n`))
+export default async function kitsu (service, type) {
+  top(service, type, KITSU.username)
 
   const oauth = new OAuth2({
     clientId: KITSU.client_id,
