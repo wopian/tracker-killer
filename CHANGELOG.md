@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.0] - 2017-03-15
+## 0.1.0 - 2017-03-15
 ### Added
 - MyAnimeList support
     - Adds anime to your list as `Completed`
