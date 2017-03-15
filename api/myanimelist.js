@@ -28,32 +28,37 @@ export default function myanimelist () {
 
         var timer = setInterval(() => {
             const padded = pad(timing, 5, '0')
+            const random = Math.floor(Math.random()*(850-300+1)+300).toString();
 
             log(padded + chalk.yellow('\trequest'))
 
             api.anime.add(timing, {
-                status: '2' // completed
+                status: '2', // completed
+                score: '10', // watchable
+                episode: random
             })
-            .then(result => {
-                log(padded + chalk.green('\tadded'))
+            .then(request => {
+                log(padded + chalk.green('\t added'))
                 deferred.resolve(timing)
             })
             .catch(err => {
-                log(padded + chalk.red('\tfailed'))
-                deferred.resolve(timing)
+                api.anime.update(timing, {
+                    status: '2', // completed
+                    score: '10', // watchable
+                    episode: random
+                })
+                .then(request => {
+                    log(padded + chalk.blue('\tupdated'))
+                    deferred.resolve(timing)
+                })
+                .catch(err => {
+                    log(padded + chalk.red('\tfailure'))
+                    deferred.resolve(timing)
+                })
             })
             clearTimeout(timer)
-        }, 100)
+        }, 10)
 
         return deferred.promise
     }
-
-    /*
-    while (i < 35087) {
-        run()
-        .then(add(i))
-        .then(i++)
-        .then(sleep(1000))
-    }
-    */
 }
