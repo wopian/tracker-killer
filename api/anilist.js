@@ -1,5 +1,5 @@
-import {ANILIST} from '../env'
-import {log} from '../util'
+import { ANILIST } from '../env'
+import { log } from '../util'
 import chalk from 'chalk'
 import pad from 'pad-left'
 import Q from 'q'

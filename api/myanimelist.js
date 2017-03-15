@@ -1,5 +1,5 @@
-import {MYANIMELIST} from '../env'
-import {log, gen, top} from '../util'
+import { MYANIMELIST } from '../env'
+import { log, gen, top } from '../util'
 import chalk from 'chalk'
 import pad from 'pad-left'
 import Q from 'q'
