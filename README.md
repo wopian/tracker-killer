@@ -25,6 +25,8 @@ It is beneficial for testing how well these sites cope with the following:
 
 ## Usage
 
+**WARNING:** *This will completely overwrite library data on these services without warning*
+
 ### Requirements
 - [git](https://git-scm.com/) 2.0.0 or newer
 - [node.js](https://nodejs.org) 7.0.0 or newer
