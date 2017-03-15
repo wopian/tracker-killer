@@ -1,5 +1,4 @@
 # Tracker Killer
-
 This was built for experimentation purposes with the goal of inspecting how anime tracking sites deal
 with users with ludicrously large libraries.
 
@@ -9,10 +8,10 @@ It is beneficial for testing how well these sites cope with the following:
 - Library API request download size
 
 ## Results
-
+### Anime
 | Test                      | AniDB | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
 | ------------------------- | ----: | --------: | ------------: | --------: | ----: | ----------:
-| Anime count               |       |           |               |           |       |
+| Anime count               |       |           |               |           |       | 12608
 | Page load time (initial)  |       |           |               |           |       |
 | Page load time (refresh)  |       |           |               |           |       |
 | Render time               |       |           |               |           |       |
@@ -22,8 +21,20 @@ It is beneficial for testing how well these sites cope with the following:
 | API response time         |       |           |               |           |       |
 | API download size         |       |           |               |           |       |
 
-## Usage
+### Manga
+| Test                      | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
+| ------------------------- | --------: | ------------: | --------: | ----: | ----------:
+| Manga count               |           |               |           |       | 42579
+| Page load time (initial)  |           |               |           |       |
+| Page load time (refresh)  |           |               |           |       |
+| Render time               |           |               |           |       |
+| Paint time (onload)       |           |               |           |       |
+| Paint time (loaded)       |           |               |           |       |
+| Paint time (scroll)       |           |               |           |       |
+| API response time         |           |               |           |       |
+| API download size         |           |               |           |       |
 
+## Usage
 **<p align="center">⚠️️ This will completely overwrite all library data on these services without warning ⚠️️</p>**
 
 ### Requirements
