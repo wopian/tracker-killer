@@ -15,30 +15,30 @@ It is beneficial for testing how well these sites cope with the following:
 
 ## Results
 ### Anime
-| Test                      | AniDB | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
-| ------------------------- | ----: | --------: | ------------: | --------: | ----: | ----------:
-| Anime count               |       |           |               |           |       | 12608
-| Page load time (initial)  |       |           |               |           |       |
-| Page load time (refresh)  |       |           |               |           |       |
-| Render time               |       |           |               |           |       |
-| Paint time (onload)       |       |           |               |           |       |
-| Paint time (loaded)       |       |           |               |           |       |
-| Paint time (scroll)       |       |           |               |           |       |
-| API response time         |       |           |               |           |       |
-| API download size         |       |           |               |           |       |
+Test                        | AniDB | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
+--------------------------- | ----: | --------: | ------------: | --------: | ----: | ----------:
+Anime count                 |       |           |               |           |       | 12608
+Page load time (initial)    |       |           |               |           |       |
+Page load time (refresh)    |       |           |               |           |       |
+Render time                 |       |           |               |           |       |
+Paint time (onload)         |       |           |               |           |       |
+Paint time (loaded)         |       |           |               |           |       |
+Paint time (scroll)         |       |           |               |           |       |
+API response time           |       |           |               |           |       |
+API download size           |       |           |               |           |       |
 
 ### Manga
-| Test                      | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
-| ------------------------- | --------: | ------------: | --------: | ----: | ----------:
-| Manga count               |           |               |           |       | 42579
-| Page load time (initial)  |           |               |           |       |
-| Page load time (refresh)  |           |               |           |       |
-| Render time               |           |               |           |       |
-| Paint time (onload)       |           |               |           |       |
-| Paint time (loaded)       |           |               |           |       |
-| Paint time (scroll)       |           |               |           |       |
-| API response time         |           |               |           |       |
-| API download size         |           |               |           |       |
+Test                        | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
+--------------------------- | --------: | ------------: | --------: | ----: | ----------:
+Manga count                 |           |               |           |       | 42579
+Page load time (initial)    |           |               |           |       |
+Page load time (refresh)    |           |               |           |       |
+Render time                 |           |               |           |       |
+Paint time (onload)         |           |               |           |       |
+Paint time (loaded)         |           |               |           |       |
+Paint time (scroll)         |           |               |           |       |
+API response time           |           |               |           |       |
+API download size           |           |               |           |       |
 
 ## Usage
 **<p align="center">⚠️️ This will completely overwrite all library data on these services without warning ⚠️️</p>**
