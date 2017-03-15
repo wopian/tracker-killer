@@ -10,22 +10,20 @@ It is beneficial for testing how well these sites cope with the following:
 
 ## Results
 
-```text
-╔══════════════════════════╦═════════════╦═══════════╦═════════════╗
-║ Test                     ║ AniList     ║ Kitsu     ║ MyAnimeList ║
-╠══════════════════════════╬═════════════╬═══════════╬═════════════╣
-║ Page load time (initial) ║ N/A         ║ N/A       ║ N/A         ║
-║ Page load time (refresh) ║ N/A         ║ N/A       ║ N/A         ║
-║ Render time              ║ N/A         ║ N/A       ║ N/A         ║
-║ Paint time               ║ N/A         ║ N/A       ║ N/A         ║
-║ API response time        ║ N/A         ║ N/A       ║ N/A         ║
-║ API download size        ║ N/A         ║ N/A       ║ N/A         ║
-╚══════════════════════════╩═════════════╩═══════════╩═════════════╝
-```
+| Test                      | AniList   | Kitsu | MyAnimeList
+| ------------------------- | --------: | ----: | ----------:
+| Page load time (initial)  | N/A       | N/A   | N/A
+| Page load time (refresh)  | N/A       | N/A   | N/A
+| Render time               | N/A       | N/A   | N/A
+| Paint time (onload)       | N/A       | N/A   | N/A
+| Paint time (loaded)       | N/A       | N/A   | N/A
+| Paint time (scroll)       | N/A       | N/A   | N/A
+| API response time         | N/A       | N/A   | N/A
+| API download size         | N/A       | N/A   | N/A
 
 ## Usage
 
-**<p align="center">⚠️️ ⚠️️ This will completely overwrite all library data on these services without warning ⚠️️ ⚠️️</p>**
+**<p align="center">⚠️️ This will completely overwrite all library data on these services without warning ⚠️️</p>**
 
 ### Requirements
 - [git](https://git-scm.com/) 2.0.0 or newer
