@@ -7,12 +7,6 @@ It is beneficial for testing how well these sites cope with the following:
 - Library API request serialisation time
 - Library API request download size
 
-## Contents
-- [Results](#results)
-- [Usage](#usage)
-- [Testing](#testing)
-    - [MyAnimeList](#myanimelist)
-
 ## Results
 ### Anime
 Test                        | AniDB | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
@@ -86,15 +80,4 @@ the following code inside it:
 Enter the command below and use the arrow keys to select the service to test with.
 ```bash
 npm start
-```
-
-## Testing
-### MyAnimeList
-#### Output
-```bash
-00000               # MAL media ID
-00000   request     # sent request to add media to library
-00000    added      # media added to library  - marked as Completed and rated 10/10
-00000   updated     # media exists in library -  "                               "
-00000   failure     # deleted on MAL or is already in Completed and rated 10/10
 ```
