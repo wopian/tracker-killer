@@ -1,5 +1,4 @@
 import input from 'inquirer'
-import { colour } from './util'
 import anidb from './api/anidb'
 import animeplanet from './api/animeplanet'
 import anilist from './api/anilist'
@@ -14,20 +13,20 @@ input.prompt([
     message: 'Select service to test:',
     choices: [
       {
-        name: colour('AniDB', 'AniDB'),
+        name: 'AniDB',
         disabled: 'not implemented'
       },
-      colour('AniList', 'AniList'),
+      'AniList',
       {
-        name: colour('AnimePlanet', 'AnimePlanet'),
+        name: 'AnimePlanet',
         disabled: 'no api'
       },
       {
-        name: colour('Annict', 'Annict'),
+        name: 'Annict',
         disabled: 'not implemented'
       },
-      colour('Kitsu', 'Kitsu'),
-      colour('MyAnimeList', 'MyAnimeList')
+      'Kitsu',
+      'MyAnimeList'
     ],
     validate: answer => {
       if (answer.length < 1) {
@@ -37,35 +36,55 @@ input.prompt([
     }
   },
   {
-    type: 'list',
+    type: 'checkbox',
     name: 'type',
     message: 'Library type to use:',
     choices: [
       'Anime',
       'Manga'
-    ]
+    ],
+    validate: answer => {
+      if (answer.length < 1) {
+        return 'Select at least one media type'
+      }
+      return true
+    }
   }
 ])
 .then(answer => {
+  console.log(answer)
   answer.service.forEach(service => {
     switch (service) {
       case ('AniDB'):
-        anidb(service, answer.type)
+        answer.type.forEach(type => {
+          anidb(service, type)
+        })
         break
       case ('AniList'):
-        anilist(service, answer.type)
+        answer.type.forEach(type => {
+          anilist(service, type)
+        })
         break
       case ('AnimePlanet'):
-        animeplanet(service, answer.type)
+        answer.type.forEach(type => {
+          animeplanet(service, type)
+        })
         break
       case ('Annict'):
-        annict(service, answer.type)
+        answer.type.forEach(type => {
+          annict(service, type)
+        })
         break
       case ('Kitsu'):
-        kitsu(service, answer.type)
+        answer.type.forEach(type => {
+          kitsu(service, type)
+        })
         break
       case ('MyAnimeList'):
-        myanimelist(service, answer.type)
+        console.log(answer.type)
+        answer.type.forEach(type => {
+          myanimelist(service, type)
+        })
         break
     }
   })
