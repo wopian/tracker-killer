@@ -81,3 +81,9 @@ Enter the command below and use the arrow keys to select the service to test wit
 ```bash
 npm start
 ```
+
+### Reporting
+WIP
+```bash
+./node_modules/.bin/phantomas https://myanimelist.net --har=./report/myanimelist/har --film-strip --film-strip=./report/myanimelist/.filmstrip --film-strip-prefix=''
+```
