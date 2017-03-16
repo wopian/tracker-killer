@@ -82,7 +82,7 @@ export function status (service, media, id, status) {
   // Colourise media ID and left pad to align
   tmp[1] = colour(pad(id, 5, ' '), service)
 
-  log(`${moment().format('HH:mm:ss.SSS')}${tmp[0]} ${type()} ${tmp[1]} ${symbol()}`)
+  log(`${moment().format('HH:mm:ss.SSS')} ${tmp[0]} ${type()} ${tmp[1]} ${symbol()}`)
 }
 
 // Enables debug loggers when run in debug mode
