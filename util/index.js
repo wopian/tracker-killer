@@ -50,7 +50,7 @@ export function top (service, type, user) {
 }
 
 // Print status of the API request
-export function status (service, id, status) {
+export function status (service, media, id, status) {
   let tmp = []
 
   function symbol () {
@@ -68,12 +68,21 @@ export function status (service, id, status) {
     }
   }
 
+  function type () {
+    switch (media) {
+      case 'Anime':
+        return colour('A', service)
+      case 'Manga':
+        return colour('M', service)
+    }
+  }
+
   // Colourise service name and left pad to align
-  tmp[0] = colour(pad(service, 11, ' '), service, true)
+  tmp[0] = colour(service, service, true)
   // Colourise media ID and left pad to align
   tmp[1] = colour(pad(id, 5, ' '), service)
 
-  log(`${moment().format('HH:mm:ss.SSS')} ${tmp[0]} ${tmp[1]} ${symbol()}`)
+  log(`${moment().format('HH:mm:ss.SSS')}${tmp[0]} ${type()} ${tmp[1]} ${symbol()}`)
 }
 
 // Enables debug loggers when run in debug mode
