@@ -1,5 +1,5 @@
 import input from 'inquirer'
-import { log } from './util'
+import { colour } from './util'
 import anidb from './api/anidb'
 import animeplanet from './api/animeplanet'
 import anilist from './api/anilist'
@@ -14,20 +14,20 @@ input.prompt([
     message: 'Select service to test:',
     choices: [
       {
-        name: 'AniDB',
+        name: colour('AniDB', 'AniDB'),
         disabled: 'not implemented'
       },
-      'AniList',
+      colour('AniList', 'AniList'),
       {
-        name: 'AnimePlanet',
+        name: colour('AnimePlanet', 'AnimePlanet'),
         disabled: 'no api'
       },
       {
-        name: 'Annict',
+        name: colour('Annict', 'Annict'),
         disabled: 'not implemented'
       },
-      'Kitsu',
-      'MyAnimeList'
+      colour('Kitsu', 'Kitsu'),
+      colour('MyAnimeList', 'MyAnimeList')
     ],
     validate: answer => {
       if (answer.length < 1) {

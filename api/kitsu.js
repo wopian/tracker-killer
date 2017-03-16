@@ -1,8 +1,7 @@
-import { KITSU } from '../env'
-import { log, top } from '../util'
-import chalk from 'chalk'
 import axios from 'axios'
 import OAuth2 from 'client-oauth2'
+import { KITSU } from '../env'
+import { log, top } from '../util'
 
 const baseUrl = 'https://kitsu.io/api'
 
