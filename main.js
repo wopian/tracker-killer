@@ -31,10 +31,7 @@ function prompt () {
           name: 'AnimePlanet',
           disabled: 'no api'
         },
-        {
-          name: 'Annict',
-          disabled: 'not implemented'
-        },
+        'Annict',
         'Kitsu',
         'MyAnimeList'
       ],
