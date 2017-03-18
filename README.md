@@ -212,25 +212,8 @@ It is beneficial for testing how well these sites cope with the following:
     npm i
     ```
 
-3. Create a file named `env.js` where `main.js` is. Copy and paste
-the following code inside it:
-
-    ```javascript
-    module.exports = {
-        ANILIST: {
-            username: 'yourusername',
-            client_id: 'yourclientid',
-            client_secret: 'yourclientsecret'
-        },
-        KITSU: {
-            username: 'yourusername'
-        },
-        MYANIMELIST: {
-            username: 'yourusername',
-            password: 'yourpassword'
-        }
-    }
-    ```
+3. Copy `env.template.js` to `env.js`
+4. Edit `env.js` and change the required account information
 
 ### Running
 Enter the command below and use the arrow keys to select the service to test with.
