@@ -9,30 +9,186 @@ It is beneficial for testing how well these sites cope with the following:
 
 ## Results
 ### Anime
-Test                        | AniDB | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
---------------------------- | ----: | --------: | ------------: | --------: | ----: | ----------:
-Anime count                 |       |           |               |           |       | 12603
-Page load time (initial)    |       |           |               |           |       | 42.8 sec
-Page load time (refresh)    |       |           |               |           |       | 42.5 sec
-Loading time                |       |           |               |           |       | 2.3 sec
-Render time                 |       |           |               |           |       | 22.8 sec
-Script time                 |       |           |               |           |       | 11.2 sec
-Paint time                  |       |           |               |           |       | 0.7 sec
-API response time           |       |           |               |           |       | 5.2 sec
-API download size           |       |           |               |           |       | 10.1 MB (XML)
+<table>
+  <tr>
+    <th rowspan="2">Service</th>
+    <th rowspan="2">Library Size</th>
+    <th colspan="2">Page Load Time (seconds)</th>
+    <th colspan="4">Network (seconds)</th>
+    <th colspan="3">API</th>
+  </tr>
+  <tr>
+    <td>Initial</td>
+    <td>Refresh</td>
+    <td>Loading</td>
+    <td>Render</td>
+    <td>Script</td>
+    <td>Paint</td>
+    <td>Response Time (seconds)</td>
+    <td>Size (MB)</td>
+    <td>Type</td>
+  </tr>
+  <tr align="right">
+    <td>AniDB</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr align="right">
+    <td>AniList</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr align="right">
+    <td>AnimePlanet</td>
+    <td colspan="10" align="center">No API Available</td>
+  </tr>
+  <tr align="right">
+    <td>Annict</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr align="right">
+    <td>Kitsu</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr align="right">
+    <td>MyAnimeList</td>
+    <td>12603</td>
+    <td>42.8</td>
+    <td>42.5</td>
+    <td>2.3</td>
+    <td>22.8</td>
+    <td>11.2</td>
+    <td>0.7</td>
+    <td>5.2</td>
+    <td>10.1</td>
+    <td>XML</td>
+  </tr>
+</table>
 
 ### Manga
-Test                        | AniList   | AnimePlanet   | Annict    | Kitsu | MyAnimeList
---------------------------- | --------: | ------------: | --------: | ----: | ----------:
-Manga count                 |           |               |           |       | 42579
-Page load time (initial)    |           |               |           |       |
-Page load time (refresh)    |           |               |           |       |
-Render time                 |           |               |           |       |
-Paint time (onload)         |           |               |           |       |
-Paint time (loaded)         |           |               |           |       |
-Paint time (scroll)         |           |               |           |       |
-API response time           |           |               |           |       |
-API download size           |           |               |           |       |
+<table>
+  <tr>
+    <th rowspan="2">Service</th>
+    <th rowspan="2">Library Size</th>
+    <th colspan="2">Page Load Time (seconds)</th>
+    <th colspan="4">Network (seconds)</th>
+    <th colspan="3">API</th>
+  </tr>
+  <tr>
+    <td>Initial</td>
+    <td>Refresh</td>
+    <td>Loading</td>
+    <td>Render</td>
+    <td>Script</td>
+    <td>Paint</td>
+    <td>Response Time (seconds)</td>
+    <td>Size (MB)</td>
+    <td>Type</td>
+  </tr>
+  <tr align="right">
+    <td>AniDB</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr align="right">
+    <td>AniList</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr align="right">
+    <td>AnimePlanet</td>
+    <td colspan="10" align="center">No API Available</td>
+  </tr>
+  <tr align="right">
+    <td>Annict</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr align="right">
+    <td>Kitsu</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr align="right">
+    <td>MyAnimeList</td>
+    <td>42579</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>XML</td>
+  </tr>
+</table>
 
 ## Usage
 **<p align="center">⚠️️ This will completely overwrite all library data on these services without warning ⚠️️</p>**
