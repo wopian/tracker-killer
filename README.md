@@ -213,7 +213,7 @@ It is beneficial for testing how well these sites cope with the following:
     ```
 
 3. Copy `env.template.js` to `env.js`
-4. Edit `env.js` and change the required account information
+4. Edit `env.js` and modify the required account information
 
 ### Running
 Enter the command below and use the arrow keys to select the service to test with.
