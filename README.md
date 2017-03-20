@@ -14,13 +14,11 @@ It is beneficial for testing how well these sites cope with the following:
     <th rowspan="2">Service</th>
     <th rowspan="2">Library Size</th>
     <th rowspan="2">Anime Loaded</th>
-    <th colspan="2">Page Load Time (seconds)</th>
+    <th rowspan="2">Page Load Time (seconds)</th>
     <th colspan="4">Network (seconds)</th>
     <th colspan="3">API</th>
   </tr>
   <tr>
-    <td>Initial</td>
-    <td>Refresh</td>
     <td>Loading</td>
     <td>Render</td>
     <td>Script</td>
@@ -31,7 +29,6 @@ It is beneficial for testing how well these sites cope with the following:
   </tr>
   <tr align="right">
     <td>AniDB</td>
-    <td></td>
     <td></td>
     <td></td>
     <td></td>
@@ -55,11 +52,10 @@ It is beneficial for testing how well these sites cope with the following:
     <td></td>
     <td></td>
     <td></td>
-    <td></td>
   </tr>
   <tr align="right">
     <td>AnimePlanet</td>
-    <td colspan="11" align="center">No API Available</td>
+    <td colspan="10" align="center">No API Available</td>
   </tr>
   <tr align="right">
     <td>Annict</td>
@@ -73,11 +69,9 @@ It is beneficial for testing how well these sites cope with the following:
     <td></td>
     <td></td>
     <td></td>
-    <td></td>
   </tr>
   <tr align="right">
     <td>Kitsu</td>
-    <td></td>
     <td></td>
     <td></td>
     <td></td>
@@ -94,7 +88,6 @@ It is beneficial for testing how well these sites cope with the following:
     <td rowspan="2">12603</td>
     <td>12603</td>
     <td>42.8</td>
-    <td>42.5</td>
     <td>2.3</td>
     <td>22.8</td>
     <td>11.2</td>
@@ -111,7 +104,6 @@ It is beneficial for testing how well these sites cope with the following:
     <td></td>
     <td></td>
     <td></td>
-    <td></td>
   </tr>
 </table>
 
@@ -121,13 +113,11 @@ It is beneficial for testing how well these sites cope with the following:
     <th rowspan="2">Service</th>
     <th rowspan="2">Library Size</th>
     <th rowspan="2">Manga Loaded</th>
-    <th colspan="2">Page Load Time (seconds)</th>
+    <th rowspan="2">Page Load Time (seconds)</th>
     <th colspan="4">Network (seconds)</th>
     <th colspan="3">API</th>
   </tr>
   <tr>
-    <td>Initial</td>
-    <td>Refresh</td>
     <td>Loading</td>
     <td>Render</td>
     <td>Script</td>
@@ -138,7 +128,6 @@ It is beneficial for testing how well these sites cope with the following:
   </tr>
   <tr align="right">
     <td>AniDB</td>
-    <td></td>
     <td></td>
     <td></td>
     <td></td>
@@ -162,15 +151,13 @@ It is beneficial for testing how well these sites cope with the following:
     <td></td>
     <td></td>
     <td></td>
-    <td></td>
   </tr>
   <tr align="right">
     <td>AnimePlanet</td>
-    <td colspan="11" align="center">No API Available</td>
+    <td colspan="10" align="center">No API Available</td>
   </tr>
   <tr align="right">
     <td>Annict</td>
-    <td></td>
     <td></td>
     <td></td>
     <td></td>
@@ -194,19 +181,17 @@ It is beneficial for testing how well these sites cope with the following:
     <td></td>
     <td></td>
     <td></td>
-    <td></td>
   </tr>
   <tr align="right">
     <td>MyAnimeList (Classic)</td>
     <td rowspan="2">42579</td>
-    <td colspan="7" align="center">Page fails to load - 500</td>
+    <td colspan="6" align="center">Page fails to load - 500</td>
     <td rowspan="2" colspan="2" align="center">API 500s</td>
     <td rowspan="2">XML</td>
   </tr>
   <tr align="right">
     <td>MyAnimeList (Modern)*</td>
     <td>300</td>
-    <td></td>
     <td></td>
     <td></td>
     <td></td>
