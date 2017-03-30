@@ -1,4 +1,6 @@
 # Tracker Killer
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/wopian/tracker-killer.svg)](https://greenkeeper.io/)
 This was built for experimentation purposes with the goal of inspecting how anime tracking sites deal
 with users with ludicrously large libraries.
 
