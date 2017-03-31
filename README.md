@@ -31,29 +31,11 @@ It is beneficial for testing how well these sites cope with the following:
   </tr>
   <tr align="right">
     <td>AniDB</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="10" align="center">Not Yet Implemented</td>
   </tr>
   <tr align="right">
     <td>AniList</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="10" align="center">Not Yet Implemented</td>
   </tr>
   <tr align="right">
     <td>AnimePlanet</td>
@@ -61,29 +43,11 @@ It is beneficial for testing how well these sites cope with the following:
   </tr>
   <tr align="right">
     <td>Annict</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="10" align="center">Not Yet Implemented</td>
   </tr>
   <tr align="right">
     <td>Kitsu</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="10" align="center">Not Yet Tested</td>
   </tr>
   <tr align="right">
     <td>MyAnimeList (Classic)</td>
@@ -101,11 +65,7 @@ It is beneficial for testing how well these sites cope with the following:
   <tr align="right">
     <td>MyAnimeList (Modern)</td>
     <td>300</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="5" align="center">Not Yet Tested</td>
   </tr>
 </table>
 
@@ -130,29 +90,11 @@ It is beneficial for testing how well these sites cope with the following:
   </tr>
   <tr align="right">
     <td>AniDB</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="10" align="center">Not Yet Implemented</td>
   </tr>
   <tr align="right">
     <td>AniList</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="10" align="center">Not Yet Implemented</td>
   </tr>
   <tr align="right">
     <td>AnimePlanet</td>
@@ -160,45 +102,23 @@ It is beneficial for testing how well these sites cope with the following:
   </tr>
   <tr align="right">
     <td>Annict</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="10" align="center">Not Yet Implemented</td>
   </tr>
   <tr align="right">
     <td>Kitsu</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="10" align="center">Not Yet Tested</td>
   </tr>
   <tr align="right">
     <td>MyAnimeList (Classic)</td>
     <td rowspan="2">42579</td>
-    <td colspan="6" align="center">Page fails to load - 500</td>
+    <td colspan="6" align="center">Library page 500s</td>
     <td rowspan="2" colspan="2" align="center">API 500s</td>
     <td rowspan="2">XML</td>
   </tr>
   <tr align="right">
     <td>MyAnimeList (Modern)*</td>
     <td>300</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="5" align="center">Not Yet Tested</td>
   </tr>
 </table>
 
