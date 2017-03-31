@@ -1,16 +1,18 @@
 # Tracker Killer
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/wopian/tracker-killer.svg)](https://greenkeeper.io/)
 This was built for experimentation purposes with the goal of inspecting how anime tracking sites deal
 with users with ludicrously large libraries.
 
 It is beneficial for testing how well these sites cope with the following:
+
 - Initial library page load time
 - Library API request serialisation time
 - Library API request download size
 
 ## Results
+
 ### Anime
+
 <table>
   <tr>
     <th rowspan="2">Service</th>
@@ -70,6 +72,7 @@ It is beneficial for testing how well these sites cope with the following:
 </table>
 
 ### Manga
+
 <table>
   <tr>
     <th rowspan="2">Service</th>
@@ -125,38 +128,47 @@ It is beneficial for testing how well these sites cope with the following:
 \* Page becomes unresponsive after loading up to 20700 manga, consuming ~20% CPU and ~4 GB of RAM on Chrome and Edge
 
 ## Usage
+
 **<p align="center">⚠️️ This will completely overwrite all library data on these services without warning ⚠️️</p>**
 
 ### Requirements
+
 - [git](https://git-scm.com/) 2.0.0 or newer
 - [node.js](https://nodejs.org) 7.0.0 or newer
 - npm 3.10.8 or newer (installed with node.js)
   - run `npm install npm -g` to update to latest version
 
 ### Setup
+
 1. Download source code:
 
     ```bash
     git clone https://github.com/wopian/tracker-killer.git
     cd tracker-killer
     ```
-2. Install dependencies:
+
+1. Install dependencies:
 
     ```bash
     npm i
     ```
 
-3. Copy `env.template.js` to `env.js`
-4. Edit `env.js` and modify the required account information
+1. Copy `env.template.js` to `env.js`
+
+1. Edit `env.js` and modify the required account information
 
 ### Running
+
 Enter the command below and use the arrow keys to select the service to test with.
+
 ```bash
 npm start
 ```
 
 ### Reporting
+
 WIP
+
 ```bash
 ./node_modules/.bin/phantomas https://myanimelist.net --har=./report/myanimelist/har --film-strip --film-strip=./report/myanimelist/.filmstrip --film-strip-prefix=''
 ```
