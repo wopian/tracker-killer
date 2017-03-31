@@ -26,12 +26,18 @@ function prompt () {
           name: 'AniDB',
           disabled: 'not implemented'
         },
-        'AniList',
+        {
+          name: 'AniList',
+          disabled: 'not implemented'
+        },
         {
           name: 'AnimePlanet',
           disabled: 'no api'
         },
-        'Annict',
+        {
+          name: 'Annict',
+          disabled: 'not implemented'
+        },
         'Kitsu',
         'MyAnimeList'
       ],
