@@ -22,7 +22,7 @@ function anime (service, type) {
   let next = Q.when({})
 
   // myanimelist.net/anime.php?o=9&c%5B0%5D=a&c%5B1%5D=d&cv=2
-  gen(35087).forEach(id => {
+  gen(36000).forEach(id => {
     next = next.then(() => {
       return queue(id + 1)
     })
@@ -70,7 +70,7 @@ function manga (service, type) {
   let next = Q.when({})
 
   // myanimelist.net/manga.php?o=9&c%5B0%5D=a&c%5B1%5D=d&cv=2
-  gen(105273).forEach(id => {
+  gen(110000).forEach(id => {
     next = next.then(() => {
       return queue(id + 1)
     })
