@@ -22,7 +22,7 @@
   "dependencies": {
     "MALjs": "~0.1.0",
     "anilist-api-pt": "~1.0.0",
-    "axios": "~0.15.3",
+    "axios": "~0.16.0",
     "babel-cli": "~6.24.0",
     "babel-preset-env": "~1.3.2",
     "babel-preset-stage-0": "~6.22.0",
