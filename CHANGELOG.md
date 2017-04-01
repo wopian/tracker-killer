@@ -17,8 +17,8 @@
 ### Added
 
 - MyAnimeList support
-    - Adds anime to your list as `Completed`
-    - Updates existing anime to `Completed`
+  - Adds anime to your list as `Completed`
+  - Updates existing anime to `Completed`
 
 [0.2.0]:https://github.com/wopian/tracker-killer/0.1.0...0.2.0
 [0.1.0]:https://github.com/wopian/tracker-killer/754983abbfc2efd26330e41dec89934123cb4208...0.1.0

@@ -8,8 +8,8 @@
 [![CC Issues]][6]
 [![David]][7]
 
-This was built for experimentation purposes with the goal of inspecting how anime tracking sites deal
-with users with ludicrously large libraries.
+This was built for experimentation purposes with the goal of inspecting how
+anime tracking sites deal with users with ludicrously large libraries.
 
 It is beneficial for testing how well these sites cope with the following:
 
@@ -133,11 +133,13 @@ It is beneficial for testing how well these sites cope with the following:
   </tr>
 </table>
 
-\* Page becomes unresponsive after loading up to 20700 manga, consuming ~20% CPU and ~4 GB of RAM on Chrome and Edge
+\* Page becomes unresponsive after loading up to 20700 manga, consuming ~20%
+CPU and ~4 GB of RAM on Chrome and Edge
 
 ## Usage
 
-**<p align="center">⚠️️ This will completely overwrite all library data on these services without warning ⚠️️</p>**
+<strong><p align="center">⚠️️ This will completely overwrite all library data on
+these services without warning ⚠️️</p></strong>
 
 ### Requirements
 
