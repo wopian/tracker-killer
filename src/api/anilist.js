@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Q from 'q'
 import { log, top } from '../util'
-import { ANILIST } from '../env'
+import { ANILIST } from '../../env'
 
 export default function anilist (service, type) {
   top(service, type, ANILIST.username)

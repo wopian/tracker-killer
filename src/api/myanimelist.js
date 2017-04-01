@@ -1,7 +1,7 @@
 import Q from 'q'
 import MALjs from 'MALjs'
 import { gen, top, debug, status } from '../util'
-import { MYANIMELIST } from '../env'
+import { MYANIMELIST } from '../../env'
 
 const api = new MALjs(MYANIMELIST.username, MYANIMELIST.password)
 

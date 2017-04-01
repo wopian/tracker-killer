@@ -1,8 +1,8 @@
 import OAuth2 from 'client-oauth2'
 import axios from 'axios'
-import { ANNICT } from '../env'
+import { ANNICT } from '../../env'
 import { top } from '../util'
-import { version } from '../package'
+import { version } from '../../package'
 
 const baseUrl = 'https://api.annict.com/'
 

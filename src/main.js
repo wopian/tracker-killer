@@ -6,7 +6,7 @@ import anilist from './api/anilist'
 import annict from './api/annict'
 import kitsu from './api/kitsu'
 import myanimelist from './api/myanimelist'
-import { version } from './package'
+import { version } from '../package'
 import { log } from './util'
 
 exec(`git log -1 --format="Tracker Killer ${version}%nUpdated %ar (%h by %an)`, (err, response) => {

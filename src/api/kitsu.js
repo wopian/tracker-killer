@@ -1,8 +1,8 @@
 import OAuth2 from 'client-oauth2'
 import JsonAPi from 'devour-client'
-import { KITSU } from '../env'
+import { KITSU } from '../../env'
 import { top } from '../util'
-import { version } from '../package'
+import { version } from '../../package'
 
 export default async function kitsu (service, media) {
   top(service, media, KITSU.USERNAME)
