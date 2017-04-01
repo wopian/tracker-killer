@@ -1,5 +1,13 @@
 # Tracker Killer
 
+[![Github Rl]][1]
+[![Travis]][2]
+[![AppVeyor]][3]
+[![CC Coverage]][4]
+[![CC Score]][5]
+[![CC Issues]][6]
+[![David]][7]
+
 This was built for experimentation purposes with the goal of inspecting how anime tracking sites deal
 with users with ludicrously large libraries.
 
@@ -135,8 +143,7 @@ It is beneficial for testing how well these sites cope with the following:
 
 - [git](https://git-scm.com/) 2.0.0 or newer
 - [node.js](https://nodejs.org) 7.0.0 or newer
-- npm 3.10.8 or newer (installed with node.js)
-  - run `npm install npm -g` to update to latest version
+- [yarn](https://https://yarnpkg.com) 0.21.0 or newer (optional)
 
 ### Setup
 
@@ -150,20 +157,20 @@ It is beneficial for testing how well these sites cope with the following:
 1. Install dependencies:
 
     ```bash
+    yarn
+    # or
     npm i
     ```
 
-1. Copy `env.template.js` to `env.js`
+1. Rename `src/env.template.js` to `src/env.js` and add the required details
 
-1. Edit `env.js` and modify the required account information
+1. Run the script:
 
-### Running
-
-Enter the command below and use the arrow keys to select the service to test with.
-
-```bash
-npm start
-```
+    ```bash
+    yarn start
+    # or
+    npm start
+    ```
 
 ### Reporting
 
@@ -172,3 +179,29 @@ WIP
 ```bash
 ./node_modules/.bin/phantomas https://myanimelist.net --har=./report/myanimelist/har --film-strip --film-strip=./report/myanimelist/.filmstrip --film-strip-prefix=''
 ```
+
+## Releases
+
+See [CHANGELOG][8]
+
+## License
+
+All code released under the [MIT license][9]
+
+[GitHub Rl]:https://img.shields.io/github/release/wopian/tracker-killer.svg?style=flat-square
+[Travis]:https://img.shields.io/travis/wopian/tracker-killer/master.svg?style=flat-square&label=linux%20%26%20macOS
+[CC Coverage]:https://img.shields.io/codeclimate/coverage/github/wopian/tracker-killer.svg?style=flat-square
+[CC Score]:https://img.shields.io/codeclimate/github/wopian/tracker-killer.svg?style=flat-square
+[CC Issues]:https://img.shields.io/codeclimate/issues/github/wopian/tracker-killer.svg?style=flat-square
+[David]:https://img.shields.io/david/wopian/tracker-killer.svg?style=flat-square
+[AppVeyor]:https://img.shields.io/appveyor/ci/wopian/tracker-killer/master.svg?style=flat-square&label=windows
+
+[1]:https://github.com/wopian/tracker-killer/releases
+[2]:https://travis-ci.org/wopian/tracker-killer
+[3]:https://ci.appveyor.com/project/wopian/tracker-killer
+[4]:https://codeclimate.com/github/wopian/tracker-killer/coverage
+[5]:https://codeclimate.com/github/wopian/tracker-killer
+[6]:https://codeclimate.com/github/wopian/tracker-killer/issues
+[7]:https://david-dm.org/wopian/tracker-killer
+[8]:https://github.com/wopian/tracker-killer/blob/master/CHANGELOG.md
+[9]:https://github.com/wopian/tracker-killer/blob/master/LICENSE.md
