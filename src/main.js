@@ -6,13 +6,13 @@ import animeplanet from './api/animeplanet'
 import anilist from './api/anilist'
 import annict from './api/annict'
 import kitsu from './api/kitsu'
-import myanimelist from './api/myanimelist'
+import Myanimelist from './api/myanimelist'
 import { version } from '../package'
 import { log } from './util'
 
 let TASKS = []
 
-exec(`git log -1 --format="Tracker Killer ${version}%nUpdated %ar (%h by %an)`, (err, response) => {
+exec(`git log -1 --format="Tracker Killer ${version}%nUpdated %ar (%h)`, (err, response) => {
   log(response)
   if (err) log(err)
   prompt()
@@ -113,11 +113,10 @@ function prompt () {
               title: `MyAnimeList ${type}`,
               task: () => {
                 return new Observable(observer => {
-                  myanimelist(service, type, observer)
-                  // let datasource = new DataSource()
-                  // datasource.ondata = (e) => observer.next(e)
-                  // datasource.onerror = (err) => observer.error(err)
-                  // datasource.oncomplete = () => observer.complete()
+                  let api = new Myanimelist(type)
+                  api.ondata = (e) => observer.next(e)
+                  api.onerror = (err) => observer.error(err)
+                  api.oncomplete = () => observer.complete()
                 })
               }
             })
