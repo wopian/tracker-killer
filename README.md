@@ -8,14 +8,12 @@
 [![CC Issues]][6]
 [![David]][7]
 
-This was built for experimentation purposes with the goal of inspecting how
-anime tracking sites deal with users with ludicrously large libraries.
-
-It is beneficial for testing how well these sites cope with the following:
-
-- Initial library page load time
-- Library API request serialisation time
-- Library API request download size
+This was built as an experiment to see how well anime/manga tracking sites deal with ludicrously
+large libraries. As such, it currently allows testing the following:
+- Initial library page load time,
+- Library API request serialisation time,
+- Library API request download size,
+- And any other side effects
 
 ## Results
 
