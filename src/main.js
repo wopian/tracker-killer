@@ -97,9 +97,9 @@ function prompt () {
               task: () => {
                 return new Observable(observer => {
                   let api = new Kitsu(type)
-                  api.ondata = (e) => api.next(e)
-                  api.onerror = (err) => api.error(err)
-                  api.oncomplete = () => api.complete()
+                  api.ondata = (e) => observer.next(e)
+                  api.onerror = (err) => observer.error(err)
+                  api.oncomplete = () => observer.complete()
                 })
               }
             })
@@ -127,24 +127,4 @@ function prompt () {
     const tasks = new Listr(TASKS, { concurrent: true })
     tasks.run()
   })
-}
-
-class DataSource {
-  constructor () {
-    let i = 0
-    this._id = setInterval(() => this.emit(i++), 200)
-  }
-
-  emit (n) {
-    const limit = 20
-    if (this.ondata) this.ondata(`Requesting ${n}`)
-    if (n === limit) {
-      if (this.oncomplete) this.oncomplete()
-      this.destroy()
-    }
-  }
-
-  destroy () {
-    clearInterval(this._id)
-  }
 }
