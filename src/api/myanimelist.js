@@ -5,8 +5,10 @@ import { MYANIMELIST } from '../../env'
 
 const api = new MALjs(MYANIMELIST.username, MYANIMELIST.password)
 
-export default function myanimelist (service, type) {
-  top(service, type, MYANIMELIST.username)
+export default function myanimelist (service, type, observer) {
+  // top(service, type, MYANIMELIST.username)
+
+  observer.next('Hello world')
 
   switch (type) {
     case ('Anime'):
@@ -31,30 +33,30 @@ function anime (service, type) {
   function queue (id) {
     const deferred = Q.defer()
     const sleep = setInterval(() => {
-      status(service, type, id, 'request')
+      // status(service, type, id, 'request')
 
       api.anime.add(id, {
         status: 6, // plantowatch
-        score: 5,
+        score: 0,
         episode: 0
       })
       .then(request => {
-        status(service, type, id, 'add')
+        // status(service, type, id, 'add')
         deferred.resolve(id)
       })
       .catch(err => {
         if (debug) { status(service, type, id, 'fail') }
         api.anime.update(id, {
           status: 6, // plantowatch
-          score: 5,
+          score: 0,
           chapter: 0
         })
         .then(request => {
-          status(service, type, id, 'update')
+          // status(service, type, id, 'update')
           deferred.resolve(id)
         })
         .catch(err => {
-          status(service, type, id, 'fail')
+          // status(service, type, id, 'fail')
           deferred.resolve(id)
         })
       })
@@ -79,30 +81,30 @@ function manga (service, type) {
   function queue (id) {
     const deferred = Q.defer()
     const sleep = setInterval(() => {
-      status(service, type, id, 'request')
+      // status(service, type, id, 'request')
 
       api.manga.add(id, {
         status: 6, // plantowatch
-        score: 5,
+        score: 0,
         chapter: 0
       })
       .then(request => {
-        status(service, type, id, 'add')
+        // status(service, type, id, 'add')
         deferred.resolve(id)
       })
       .catch(err => {
         if (debug) { status(service, type, id, 'fail') }
         api.manga.update(id, {
           status: 6, // plantowatch
-          score: 5,
+          score: 0,
           chapter: 0
         })
         .then(request => {
-          status(service, type, id, 'update')
+          // status(service, type, id, 'update')
           deferred.resolve(id)
         })
         .catch(err => {
-          status(service, type, id, 'fail')
+          // status(service, type, id, 'fail')
           deferred.resolve(id)
         })
       })

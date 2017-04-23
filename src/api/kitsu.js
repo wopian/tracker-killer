@@ -67,7 +67,8 @@ export default async function kitsu (service, media) {
         user: { id: userId },
         status: 'planned',
         progress: 0,
-        rating: null
+        // rating: null
+        ratingTwenty: null
       })
       .catch(err => {
         // User already has media in their library
@@ -91,7 +92,8 @@ export default async function kitsu (service, media) {
               user: { id: userId },
               status: 'planned',
               progress: '0',
-              rating: null
+              // rating: null
+              ratingTwenty: null
             })
             .catch(err => console.log(err))
           })
