@@ -58,58 +58,50 @@ const options = {
 
 export default class Api {
   constructor (type) {
-    let mediaID = 1
-    this.type = type
-    this._id = setInterval(() => this.emit(mediaID++), 1000)
+    this.type = type.toLowerCase()
+    this.limit = { anime: 36000, manga: 110000 }
+    this.getMedia(0)
   }
 
-  emit (id) {
-    const limit = this.type === 'anime' ? 36000 : 110000
-    // const limit = this.type === 'Anime' ? 5 : 10
-
-    if (this.ondata) {
-      if (this.type === 'Anime') {
-        client.addAnime(id, options.anime)
-        .then(res => {
-          this.ondata(res)
+  async getMedia (ID) {
+    if (await this.ondata) {
+      if (this.type === 'anime') {
+        await client.addAnime(ID, options.anime)
+        .then(async res => {
+          await this.ondata(res)
         })
-        .catch(() => {
-          client.updateAnime(id, options.anime)
-          .then(res => {
-            this.ondata(`${id} (${res})`)
+        .catch(async () => {
+          await client.updateAnime(ID, options.anime)
+          .then(async res => {
+            await this.ondata(`${ID} (${res})`)
           })
-          .catch(err => {
+          .catch(async err => {
             if (err.message === 'Response code 400 (Bad Request)') {
-              this.ondata(`${id} (Does not exist)`)
+              await this.ondata(`${ID} (Does not exist)`)
             } else console.error(err)
           })
         })
-      } else {
-        client.addManga(id, options.manga)
-        .then(res => {
-          this.ondata(res)
+      } else if (this.type === 'manga') {
+        await client.addManga(ID, options.manga)
+        .then(async res => {
+          await this.ondata(res)
         })
-        .catch(() => {
-          client.updateManga(id, options.manga)
-          .then(res => {
-            this.ondata(`${id} (${res})`)
+        .catch(async () => {
+          await client.updateManga(ID, options.manga)
+          .then(async res => {
+            await this.ondata(`${ID} (${res})`)
           })
-          .catch(err => {
+          .catch(async err => {
             if (err.message === 'Response code 400 (Bad Request)') {
-              this.ondata(`${id} (Does not exist)`)
+              await this.ondata(`${ID} (Does not exist)`)
             } else console.error(err)
           })
         })
-      }
+      } else await this.onerror('Unknown type')
     }
-    if (id === limit) {
-      if (this.oncomplete) this.oncomplete()
-      this.destroy()
-    }
-  }
-
-  destroy () {
-    clearInterval(this._id)
+    if (ID === await this.limit[this.type]) {
+      if (this.oncomplete) await this.oncomplete()
+    } else await this.getMedia(++ID)
   }
 }
 

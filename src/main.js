@@ -1,11 +1,11 @@
 import { exec } from 'child_process'
 import input from 'inquirer'
 import Listr from 'listr'
-import anidb from './api/anidb'
-import animeplanet from './api/animeplanet'
-import anilist from './api/anilist'
-import annict from './api/annict'
-import kitsu from './api/kitsu'
+import Anidb from './api/anidb'
+import Animeplanet from './api/animeplanet'
+import Anilist from './api/anilist'
+import Annict from './api/annict'
+import Kitsu from './api/kitsu'
 import Myanimelist from './api/myanimelist'
 import { version } from '../package'
 import { log } from './util'
@@ -92,15 +92,14 @@ function prompt () {
           break
         case ('Kitsu'):
           answer.type.forEach(type => {
-            // kitsu(service, type)
             TASKS.push({
-              title: `Kitsu ${type}`,
+              title: `${service} ${type}`,
               task: () => {
                 return new Observable(observer => {
-                  let datasource = new DataSource()
-                  datasource.ondata = (e) => observer.next(e)
-                  datasource.onerror = (err) => observer.error(err)
-                  datasource.oncomplete = () => observer.complete()
+                  let api = new Kitsu(type)
+                  api.ondata = (e) => api.next(e)
+                  api.onerror = (err) => api.error(err)
+                  api.oncomplete = () => api.complete()
                 })
               }
             })
@@ -108,9 +107,8 @@ function prompt () {
           break
         case ('MyAnimeList'):
           answer.type.forEach(type => {
-            // myanimelist(service, type)
             TASKS.push({
-              title: `MyAnimeList ${type}`,
+              title: `${service} ${type}`,
               task: () => {
                 return new Observable(observer => {
                   let api = new Myanimelist(type)
