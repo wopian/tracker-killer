@@ -47,7 +47,7 @@ export default class Api {
       if (this.type === 'anime') {
         await client.addAnime(ID, options.anime)
         .then(async res => {
-          await this.ondata(res)
+          await this.ondata(`${ID} (${res})`)
         })
         .catch(async () => {
           await client.updateAnime(ID, options.anime)
@@ -57,13 +57,13 @@ export default class Api {
           .catch(async err => {
             if (err.message === 'Response code 400 (Bad Request)') {
               await this.ondata(`${ID} (Does not exist)`)
-            } else console.error(err)
+            } else this.onerror(err)
           })
         })
       } else if (this.type === 'manga') {
         await client.addManga(ID, options.manga)
         .then(async res => {
-          await this.ondata(res)
+          await this.ondata(`${ID} (${res})`)
         })
         .catch(async () => {
           await client.updateManga(ID, options.manga)
@@ -73,7 +73,7 @@ export default class Api {
           .catch(async err => {
             if (err.message === 'Response code 400 (Bad Request)') {
               await this.ondata(`${ID} (Does not exist)`)
-            } else console.error(err)
+            } else this.onerror(err)
           })
         })
       } else await this.onerror('Unknown type')
