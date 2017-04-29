@@ -1,4 +1,5 @@
 import popura from 'popura'
+import { pad, padID, log } from '../util'
 import { MYANIMELIST } from '../../env'
 
 const client = popura(MYANIMELIST.USERNAME, MYANIMELIST.PASSWORD)
@@ -38,48 +39,85 @@ const options = {
 export default class Api {
   constructor (type) {
     this.type = type.toLowerCase()
-    this.limit = { anime: 36000, manga: 110000 }
-    this.getMedia(0)
+    this.limit = { anime: 35578, manga: 106857 }
+    log.info(`${pad('MyAnimeList')} (${this.type}) Connected to ${MYANIMELIST.USERNAME}`)
+    this.main(0)
   }
 
-  async getMedia (ID) {
+  async main (ID) {
     if (await this.ondata) {
-      if (this.type === 'anime') {
-        await client.addAnime(ID, options.anime)
-        .then(async res => {
-          await this.ondata(`${ID} (${res})`)
-        })
-        .catch(async () => {
-          await client.updateAnime(ID, options.anime)
-          .then(async res => {
-            await this.ondata(`${ID} (${res})`)
-          })
-          .catch(async err => {
-            if (err.message === 'Response code 400 (Bad Request)') {
-              await this.ondata(`${ID} (Does not exist)`)
-            } else this.onerror(err)
-          })
-        })
-      } else if (this.type === 'manga') {
-        await client.addManga(ID, options.manga)
-        .then(async res => {
-          await this.ondata(`${ID} (${res})`)
-        })
-        .catch(async () => {
-          await client.updateManga(ID, options.manga)
-          .then(async res => {
-            await this.ondata(`${ID} (${res})`)
-          })
-          .catch(async err => {
-            if (err.message === 'Response code 400 (Bad Request)') {
-              await this.ondata(`${ID} (Does not exist)`)
-            } else this.onerror(err)
-          })
-        })
-      } else await this.onerror('Unknown type')
+      if (this.type === 'anime') await this.addAnime(ID)
+      else if (this.type === 'manga') await this.addManga(ID)
+      else {
+        log.error(`${pad('MyAnimeList')} (${this.type}) Invalid media type`)
+        this.onerror('Unknown type')
+      }
     }
-    if (ID === await this.limit[this.type]) {
-      if (this.oncomplete) await this.oncomplete()
-    } else await this.getMedia(++ID)
+
+    await this.next(ID)
+  }
+
+  next (ID) {
+    if (ID === this.limit[this.type]) {
+      if (this.oncomplete) this.oncomplete()
+    } else this.main(++ID)
+  }
+
+  async addAnime (ID) {
+    await client.addAnime(ID, options.anime)
+    .then(res => {
+      log.info(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
+      this.ondata(`${ID} (${res})`)
+    })
+    .catch(async () => {
+      log.debug(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - attempting to update`)
+      await this.updateAnime(ID)
+    })
+  }
+
+  async updateAnime (ID) {
+    await client.updateAnime(ID, options.anime)
+    .then(res => {
+      log.info(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
+      this.ondata(`${ID} (${res})`)
+    })
+    .catch(err => {
+      if (err.statusCode === 400) {
+        log.warn(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - media may not exist`)
+        this.ondata(`${ID} (Does not exist)`)
+      } else {
+        log.error(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - ${err}`)
+        this.ondata(`${ID} (Unknown error)`)
+      }
+    })
+  }
+
+  async addManga (ID) {
+    await client.addManga(ID, options.manga)
+    .then(res => {
+      log.info(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
+      this.ondata(`${ID} (${res})`)
+    })
+    .catch(async () => {
+      log.debug(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - attempting to update`)
+      await this.updateManga(ID)
+    })
+  }
+
+  async updateManga (ID) {
+    await client.updateManga(ID, options.manga)
+    .then(res => {
+      log.info(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
+      this.ondata(`${ID} (${res})`)
+    })
+    .catch(err => {
+      if (err.statusCode === 400) {
+        log.warn(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - media may not exist`)
+        this.ondata(`${ID} (Does not exist)`)
+      } else {
+        log.error(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - ${err}`)
+        this.ondata(`${ID} (Unknown error)`)
+      }
+    })
   }
 }
