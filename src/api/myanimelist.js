@@ -1,6 +1,6 @@
 import popura from 'popura'
-import { pad, padID, log } from '../util'
 import { MYANIMELIST } from '../../env'
+import { pad, padID, log } from '../util'
 
 const client = popura(MYANIMELIST.USERNAME, MYANIMELIST.PASSWORD)
 const options = {
@@ -35,6 +35,7 @@ const options = {
     retail_volumes: 0
   }
 }
+let ERRORS = []
 
 export default class Api {
   constructor (type) {
@@ -59,18 +60,25 @@ export default class Api {
 
   next (ID) {
     if (ID === this.limit[this.type]) {
-      if (this.oncomplete) this.oncomplete()
+      if (this.oncomplete) {
+        // Dump errors
+        log.info(`${pad('MyAnimeList')} (${this.type}) Finished with ${ERRORS.length} errors`)
+        if (ERRORS.length) log.error(ERRORS)
+        this.oncomplete()
+      }
     } else this.main(++ID)
   }
 
   async addAnime (ID) {
     await client.addAnime(ID, options.anime)
     .then(res => {
-      log.info(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
+      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
       this.ondata(`${ID} (${res})`)
     })
-    .catch(async () => {
-      log.debug(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - attempting to update`)
+    .catch(async err => {
+      log.debug(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - ${err}`)
+      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - attempting to update`)
+      ERRORS.push([ID, err])
       await this.updateAnime(ID)
     })
   }
@@ -78,7 +86,7 @@ export default class Api {
   async updateAnime (ID) {
     await client.updateAnime(ID, options.anime)
     .then(res => {
-      log.info(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
+      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
       this.ondata(`${ID} (${res})`)
     })
     .catch(err => {
@@ -88,6 +96,7 @@ export default class Api {
       } else {
         log.error(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - ${err}`)
         this.ondata(`${ID} (Unknown error)`)
+        ERRORS.push([ID, err])
       }
     })
   }
@@ -95,11 +104,13 @@ export default class Api {
   async addManga (ID) {
     await client.addManga(ID, options.manga)
     .then(res => {
-      log.info(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
+      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
       this.ondata(`${ID} (${res})`)
     })
-    .catch(async () => {
-      log.debug(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - attempting to update`)
+    .catch(async err => {
+      log.debug(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - ${err}`)
+      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - attempting to update`)
+      ERRORS.push([ID, err])
       await this.updateManga(ID)
     })
   }
@@ -107,7 +118,7 @@ export default class Api {
   async updateManga (ID) {
     await client.updateManga(ID, options.manga)
     .then(res => {
-      log.info(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
+      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
       this.ondata(`${ID} (${res})`)
     })
     .catch(err => {
@@ -117,6 +128,7 @@ export default class Api {
       } else {
         log.error(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - ${err}`)
         this.ondata(`${ID} (Unknown error)`)
+        ERRORS.push([ID, err])
       }
     })
   }
