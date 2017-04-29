@@ -61,6 +61,9 @@ export default class Api {
       if (response.status === 204) {
         log.trace(`${pad('Annict')} (${this.type}) ${padID(ID)} Added`)
         this.ondata(`${ID} (Added)`)
+      } else if (response.status === 404) {
+        log.trace(`${pad('Annict')} (${this.type}) ${padID(ID)} Add Failed - media does not exist`)
+        this.ondata(`${ID} (Does not exist)`)
       } else {
         log.warn(`${pad('Annict')} (${this.type}) ${padID(ID)} Added? - expected 204, but got ${response.status}`)
         this.ondata(`${ID} (Added?)`)
