@@ -51,7 +51,7 @@ large libraries. As such, it currently allows testing the following:
   </tr>
   <tr align="right">
     <td>Annict</td>
-    <td colspan="10" align="center">Not Yet Implemented</td>
+    <td colspan="10" align="center">Not Yet Tested</td>
   </tr>
   <tr align="right">
     <td>Kitsu</td>
@@ -110,10 +110,6 @@ large libraries. As such, it currently allows testing the following:
     <td colspan="10" align="center">No API Available</td>
   </tr>
   <tr align="right">
-    <td>Annict</td>
-    <td colspan="10" align="center">Not Yet Implemented</td>
-  </tr>
-  <tr align="right">
     <td>Kitsu</td>
     <td colspan="10" align="center">Not Yet Tested</td>
   </tr>
@@ -132,7 +128,7 @@ large libraries. As such, it currently allows testing the following:
 </table>
 
 \* Page becomes unresponsive after loading up to 20700 manga, consuming ~20%
-CPU and ~4 GB of RAM on Chrome and Edge
+CPU and ~4 GB of RAM on Chrome 56 and Edge 14
 
 ## Usage
 
