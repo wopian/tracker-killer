@@ -1,7 +1,7 @@
 import Annict from 'annict'
-import { ANNICT } from '../../env'
 import { version } from '../../package'
 import { pad, padID, log } from '../util'
+import { ANNICT } from '../env'
 
 const annict = new Annict()
 let ERRORS = []

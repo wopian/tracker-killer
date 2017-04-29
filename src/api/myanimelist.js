@@ -1,6 +1,6 @@
 import popura from 'popura'
-import { MYANIMELIST } from '../../env'
 import { pad, padID, log } from '../util'
+import { MYANIMELIST } from '../env'
 
 const client = popura(MYANIMELIST.USERNAME, MYANIMELIST.PASSWORD)
 const options = {

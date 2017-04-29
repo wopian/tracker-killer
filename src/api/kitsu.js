@@ -1,8 +1,8 @@
 import OAuth2 from 'client-oauth2'
 import JsonApi from 'devour-client'
-import { KITSU } from '../../env'
 import { version } from '../../package'
 import { pad, padID, log } from '../util'
+import { KITSU } from '../env'
 
 const baseUrl = 'https://kitsu.io/api'
 let Kitsu, auth, userId
