@@ -1,89 +1,34 @@
-import chalk from 'chalk'
-import pad from 'pad-left'
-import moment from 'moment'
+import logger from 'simple-node-logger'
+import leftPad from 'left-pad'
 
-// Shorthand alias for logging
-export const log = console.log
+const argv = require('yargs').argv
 
-// Generate and fill an Array
-// i.e [1, 2, 3...]
-export function gen (size) {
-  return Array.apply(null, { length: size })
-  .map(Number.call, Number)
-}
+// Longest service name (MyAnimeList = 11)
+export const pad = str => leftPad(str, 11)
+// Pad ID values
+export const padID = str => leftPad(str, 6)
 
-// Colourise strings for services
-export function colour (string, service, shorthand) {
-  switch (service) {
-    case 'AniDB':
-      return shorthand
-        ? chalk.white('AD')
-        : chalk.white(string)
-    case 'AniList':
-      return shorthand
-        ? chalk.cyan('AL')
-        : chalk.cyan(string)
-    case 'AnimePlanet':
-      return shorthand
-        ? chalk.magenta.dim('AP')
-        : chalk.magenta.dim(string)
-    case 'Annict':
-      return shorthand
-        ? chalk.red.dim('AN')
-        : chalk.red.dim(string)
-    case 'Kitsu':
-      return shorthand
-        ? chalk.yellow.dim('KS')
-        : chalk.yellow.dim(string)
-    case 'MyAnimeList':
-      return shorthand
-        ? chalk.blue.dim('ML')
-        : chalk.blue.dim(string)
-    default:
-      return string
-  }
-}
+export const log = logger.createRollingFileLogger({
+  logDirectory: `${__dirname}/../../`,
+  // fileNamePattern: 'tracker-killer-<date>.log',
+  fileNamePattern: 'tracker-killer.log',
+  dateFormat: 'YYYY-MM-DD',
+  timestampFormat: 'YYYY-MM-DD hh:mm:ss.SSS'
+})
 
-// Print header for service to display which type and user is active
-export function top (service, type, user) {
-  log(colour(`${service} ${type} Library Filler\n${user}\n`, service))
-}
+if (argv._.includes('ALL')) log.setLevel('all')
+if (argv._.includes('TRACE')) log.setLevel('TRACE')
+if (argv._.includes('DEBUG')) log.setLevel('debug')
+// if (argv._.includes('INFO')) log.setLevel('info') // Default
+if (argv._.includes('WARN')) log.setLevel('warn')
+if (argv._.includes('ERROR')) log.setLevel('error')
+if (argv._.includes('FATAL')) log.setLevel('fatal')
 
-// Print status of the API request
-export function status (service, media, id, status) {
-  let tmp = []
-
-  function symbol () {
-    switch (status) {
-      case 'request':
-        return chalk.grey('⊷')  // ╭╮
-      case 'add':
-        return chalk.green('⊶') // ╰╯
-      case 'update':
-        return chalk.yellow('⊶')
-      case 'fail':
-        return chalk.red('⊶')   // ┆┆
-      default:
-        return chalk.red(' ╳')
-    }
-  }
-
-  function type () {
-    switch (media) {
-      case 'Anime':
-        return colour('A', service)
-      case 'Manga':
-        return colour('M', service)
-    }
-  }
-
-  // Colourise service name and left pad to align
-  tmp[0] = colour(service, service, true)
-  // Colourise media ID and left pad to align
-  tmp[1] = colour(pad(id, 5, ' '), service)
-
-  log(`${moment().format('HH:mm:ss.SSS')} ${tmp[0]} ${type()} ${tmp[1]} ${symbol()}`)
-}
-
-// Enables debug loggers when run in debug mode
-export const debug = process.env.DEBUG
+/*
+log.trace('this is a simple trace log statement (should not show)')
+log.debug('this is a simple debug log statement (should not show)')
+log.info('this is a simple info log statement/entry')
+log.warn('this is a simple warn log statement/entry')
+log.error('this is a simple error log statement/entry')
+log.fatal('this is a simple fatal log statement/entry')
+*/

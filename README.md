@@ -157,9 +157,9 @@ these services without warning ⚠️️</p></strong>
 1. Install dependencies:
 
     ```bash
-    yarn
+    yarn install
     # or
-    npm i
+    npm install
     ```
 
 1. Rename `src/env.template.js` to `src/env.js` and add the required details
@@ -170,6 +170,14 @@ these services without warning ⚠️️</p></strong>
     yarn start
     # or
     npm start
+    ```
+
+1. Debugging (`ALL`, `INFO` (default), `DEBUG`, `WARN`, `ERROR` & `TRACE`)
+
+    ```bash
+    yarn start -- DEBUG
+    # or
+    npm start -- DEBUG
     ```
 
 ### Reporting
