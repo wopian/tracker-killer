@@ -22,11 +22,11 @@
     "babel-cli": "~6.24.0",
     "babel-preset-env": "~1.4.0",
     "babel-preset-stage-0": "~6.24.1",
-    "client-oauth2": "~4.0.0",
+    "client-oauth2": "~4.1.0",
     "devour-client": "~1.4.1",
     "inquirer": "~3.0.6",
     "left-pad": "~1.1.3",
-    "listr": "~0.11.0",
+    "listr": "~0.12.0",
     "popura": "~1.2.5",
     "simple-node-logger": "~0.93.20",
     "yargs": "~7.1.0"
