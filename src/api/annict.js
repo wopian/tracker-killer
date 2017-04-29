@@ -64,14 +64,12 @@ export default class Api {
       } else {
         log.warn(`${pad('Annict')} (${this.type}) ${padID(ID)} Added? - expected 204, but got ${response.status}`)
         this.ondata(`${ID} (Added?)`)
-        throw JSON.stringify(response)
       }
       await this.next(++ID)
     } catch (err) {
       log.error(`${pad('Annict')} (${this.type}) ${padID(ID)} Add Failed - ${err}`)
       this.ondata(`${ID} (Failed)`)
       ERRORS.push([ID, err])
-      throw JSON.stringify(err)
     }
   }
 }
