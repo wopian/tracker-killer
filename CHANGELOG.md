@@ -2,6 +2,10 @@
 
 ## [0.3.0] - 2017-04-23
 
+### Added
+
+- Annict anime support (#4)
+
 ### Changed
 
 - Made logging more user-friendly
