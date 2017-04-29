@@ -28,10 +28,7 @@ input.prompt([
         name: 'AnimePlanet',
         disabled: 'no api'
       },
-      {
-        name: 'Annict',
-        disabled: 'wip'
-      },
+      'Annict',
       'Kitsu',
       'MyAnimeList'
     ],
@@ -68,7 +65,17 @@ input.prompt([
         break
       case ('Annict'):
         answer.type.forEach(type => {
-          // annict(service, type)
+          TASKS.push({
+            title: `${service} ${type}`,
+            task: () => {
+              return new Observable(observer => {
+                let api = new Annict(type)
+                api.ondata = (e) => observer.next(e)
+                api.onerror = (err) => observer.error(err)
+                api.oncomplete = () => observer.complete()
+              })
+            }
+          })
         })
         break
       case ('Kitsu'):

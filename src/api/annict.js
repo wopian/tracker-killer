@@ -1,38 +1,77 @@
-import OAuth2 from 'client-oauth2'
-import axios from 'axios'
+import Annict from 'annict'
 import { ANNICT } from '../../env'
-import { top } from '../util'
 import { version } from '../../package'
+import { pad, padID, log } from '../util'
 
-const baseUrl = 'https://api.annict.com/'
+const annict = new Annict()
+let ERRORS = []
 
-export default async function annict (service, type) {
-  top(service, type, ANNICT.username)
+export default class Api {
+  constructor (type) {
+    this.type = type.toLowerCase()
+    this.limit = { anime: 5381 }
+    this.main(1)
+  }
 
-  const Annict = axios.create({
-    baseURL: baseUrl,
-    headers: {
-      'User-Agent': `tracker-killer/${version}`
-    }
-  })
-
-  Annict.get(`oauth/authorize?client_id=${ANNICT.clientId}&response_type=code}&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&scope=read+write`)
-  .then(res => {
-    Annict.post(`oauth/token`, {
-      data: {
-        client_id: ANNICT.clientId,
-        client_secret: ANNICT.clientSecret,
-        grant_type: 'authorization_code',
-        redirect_uri: 'urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob',
-        code: 'code'
+  async main (ID) {
+    if (await this.ondata) {
+      try {
+        if (!ANNICT.PERSONAL_TOKEN) {
+          console.log('\nAnnict needs a personal access token to authorise.\n\n' +
+            '1. Go to https://annict.com/settings/apps\n' +
+            '2. Generate a new token with \'read + write\' scopes\n' +
+            '3. Copy the token to env.js, e.g:\n' +
+            '   ANNICT: {\n     PERSONAL_TOKEN: \'123\'\n   }')
+          process.exit(0)
+        } else if (this.type === 'anime') {
+          annict.client.setHeader('Authorization', `Bearer ${ANNICT.PERSONAL_TOKEN}`)
+          annict.client.setHeader('User-Agent', `trackerKiller/${version} (wopian)`)
+          await this.next(ID)
+        } else if (this.type === 'manga') {
+          this.ondata('Annict doesn\'t support manga')
+          this.delete()
+        } else {
+          log.error(`${pad('Annict')} (${this.type}) Invalid media type`)
+          this.onerror('Unknown type')
+        }
+      } catch (err) {
+        console.log(err)
       }
-    })
-    console.log(res)
-  })
+    } else this.main(ID)
+  }
 
-  /*
-  Annict.post('v1/me/statuses?work_id=1&kind=wanna_watch')
-  .then(res => console.log(res))
-  .catch(err => console.log(err))
-  */
+  delete () {
+    if (this.oncomplete) {
+      // Dump errors
+      log.info(`${pad('Annict')} (${this.type}) Finished with ${ERRORS.length} errors`)
+      if (ERRORS.length) log.error(ERRORS)
+      this.oncomplete()
+    }
+  }
+
+  async next (ID) {
+    if (ID === this.limit[this.type]) {
+      this.delete()
+    } else await this.addWorks(ID)
+  }
+
+  async addWorks (ID) {
+    try {
+      let response = await annict.Me.Status.create({ work_id: ID, kind: 'wanna_watch' })
+      if (response.status === 204) {
+        log.trace(`${pad('Annict')} (${this.type}) ${padID(ID)} Added`)
+        this.ondata(`${ID} (Added)`)
+      } else {
+        log.warn(`${pad('Annict')} (${this.type}) ${padID(ID)} Added? - expected 204, but got ${response.status}`)
+        this.ondata(`${ID} (Added?)`)
+        throw JSON.stringify(response)
+      }
+      await this.next(++ID)
+    } catch (err) {
+      log.error(`${pad('Annict')} (${this.type}) ${padID(ID)} Add Failed - ${err}`)
+      this.ondata(`${ID} (Failed)`)
+      ERRORS.push([ID, err])
+      throw JSON.stringify(err)
+    }
+  }
 }
