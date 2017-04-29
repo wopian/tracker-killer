@@ -16,7 +16,7 @@ export default class Api {
   async main (ID) {
     if (await this.ondata) {
       try {
-        if (!ANNICT.PERSONAL_TOKEN) {
+        if (!ANNICT.PERSONAL_TOKEN || ANNICT.PERSONAL_TOKEN !== 'yourPersonalToken') {
           console.log('\nAnnict needs a personal access token to authorise.\n\n' +
             '1. Go to https://annict.com/settings/apps\n' +
             '2. Generate a new token with \'read + write\' scopes\n' +
