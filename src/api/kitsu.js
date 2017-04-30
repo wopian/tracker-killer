@@ -1,53 +1,77 @@
 import OAuth2 from 'client-oauth2'
 import JsonApi from 'devour-client'
+import moment from 'moment'
 import { version } from '../../package'
-import { pad, padID, log } from '../util'
+import { logFile, logList } from '../util'
 import { KITSU } from '../env'
 
 const baseUrl = 'https://kitsu.io/api'
-let Kitsu, auth, userId
-let ERRORS = []
+const Kitsu = new JsonApi({
+  apiUrl: `${baseUrl}/edge`,
+  logger: false
+})
+
+let auth, userId, lastAction
+
+Kitsu.headers['User-Agent'] = `trackerKiller/${version} (wopian)`
+
+Kitsu.define('user', {}, { collectionPath: 'users' })
+Kitsu.define('anime', {}, { collectionPath: 'anime' })
+Kitsu.define('manga', {}, { collectionPath: 'manga' })
+Kitsu.define('libraryEntry', {
+  status: '',
+  progress: '',
+  rating: '',
+  media: {
+    jsonApi: 'hasOne',
+    type: 'anime' | 'manga'
+  },
+  user: {
+    jsonApi: 'hasOne',
+    type: 'users'
+  }
+}, { collectionPath: 'library-entries' })
 
 export default class Api {
   constructor (type) {
+    lastAction = moment()
     this.type = type.toLowerCase()
-    this.main()
+    this.setup()
   }
 
-  async main () {
+  async log (ID = '', action = '', last, level = 'info', err = '') {
+    logFile(level, 'Kitsu', this.type, ID, action, err)
+    this.ondata(logList(ID, action, last))
+    lastAction = moment()
+  }
+
+  async setup () {
+    if (!KITSU.USERNAME || KITSU.USERNAME === 'yourUsername' ||
+        !KITSU.PASSWORD || KITSU.PASSWORD === 'yourPassword' ||
+        !KITSU.CLIENT_ID || KITSU.CLIENT_ID === 'yourClientID' ||
+        !KITSU.CLIENT_SECRET || KITSU.CLIENT_SECRET === 'yourClientSecret') {
+      console.log('\nKitsu needs some user info to authorise\n\n' +
+        '1. Rename env.template.js to env.js\n' +
+        '2. Add username, password, client ID & secret for Kitsu')
+      process.exit(0)
+    } else this.auth()
+  }
+
+  async auth () {
     auth = await new OAuth2({
       clientId: KITSU.CLIENT_ID,
       clientSecret: KITSU.CLIENT_SECRET,
       accessTokenUri: `${baseUrl}/oauth/token`
     })
-    Kitsu = await new JsonApi({
-      apiUrl: `${baseUrl}/edge`,
-      logger: false
-    })
-    Kitsu.headers['User-Agent'] = `trackerKiller/${version} (wopian)`
+
     let { accessToken } = await auth.owner.getToken(KITSU.USERNAME, KITSU.PASSWORD)
     Kitsu.headers['Authorization'] = await `Bearer ${accessToken}`
-    Kitsu.define('user', {}, { collectionPath: 'users' })
-    Kitsu.define('anime', {}, { collectionPath: 'anime' })
-    Kitsu.define('manga', {}, { collectionPath: 'manga' })
-    Kitsu.define('libraryEntry', {
-      status: '',
-      progress: '',
-      rating: '',
-      media: {
-        jsonApi: 'hasOne',
-        type: 'anime' | 'manga'
-      },
-      user: {
-        jsonApi: 'hasOne',
-        type: 'users'
-      }
-    }, { collectionPath: 'library-entries' })
+    this.log(undefined, `Connected to ${KITSU.USERNAME}`, lastAction, 'info')
+
     await this.getUser()
     await this.getMedia(0)
   }
 
-  // Get user ID
   async getUser () {
     try {
       let response = await Kitsu.findAll('user', {
@@ -55,39 +79,35 @@ export default class Api {
         filter: { name: KITSU.USERNAME },
         page: { limit: 1 }
       })
+
       userId = await response[0].id
-      log.info(`${pad('Kitsu')} (${this.type}) Connected to ${KITSU.USERNAME} (${userId})`)
-      this.ondata(`Got user ID of ${KITSU.USERNAME} (${userId})`)
+
+      this.log(undefined, `Linked ${KITSU.USERNAME} with ${userId}`, lastAction, 'info')
     } catch (err) {
-      log.error(`${pad('Kitsu')} (${this.type}) Getting ID of ${KITSU.USERNAME} failed - ${err}`)
-      this.ondata(`Get user (Failed 1)`)
-      ERRORS.push([-1, err])
+      this.log(undefined, `Error getting ID of ${KITSU.USERNAME}`, lastAction, 'error', err)
     }
   }
 
   async getMedia (offset) {
     let response
+
     try {
       response = await Kitsu.findAll(this.type, {
         fields: { anime: 'id', manga: 'id' },
         page: { limit: 20, offset }
       })
-      log.trace(`${pad('Kitsu')} (${this.type}) ${padID(offset)}-${offset + 20} Fetched`)
-      this.ondata(`${offset}-${offset + 20} (Fetched)`)
+
+      this.log(`${offset}-${offset + 20}`, 'Fetched', lastAction, 'trace')
+
       await this.addLibraryEntry(response)
-    } catch (err) {
-      log.error(`${pad('Kitsu')} (${this.type}) ${padID(offset)}-${offset + 20} Fetch failed`)
-      this.ondata(`Get ${offset}-${offset + 20} (Failed 1)`)
-      ERRORS.push([0, err])
-    } finally {
       // Load next page if it exists
       if (response.links.next) await this.getMedia(offset + 20)
       else if (this.oncomplete) {
-        // Dump errors
-        log.info(`${pad('Kitsu')} (${this.type}) Finished with ${ERRORS.length} errors`)
-        if (ERRORS.length) log.error(ERRORS)
+        this.log(undefined, 'Finished', undefined, 'info')
         this.oncomplete()
       }
+    } catch (err) {
+      this.log(`${offset}-${offset + 20}`, 'Failed', lastAction, 'error', `Error fetching media - ${err}`)
     }
   }
 
@@ -102,17 +122,16 @@ export default class Api {
           progress: 0,
           ratingTwenty: 'null'
         })
-        log.trace(`${pad('Kitsu')} (${this.type}) ${padID(mediaEntry.id)} Added`)
-        this.ondata(`${mediaEntry.id} (Added)`)
+
+        this.log(mediaEntry.id, 'Added', lastAction, 'trace')
       } catch (err) {
         // User already has media in their library
         if (await err.animeId === 'has already been taken' || await err.mangaId === 'has already been taken') {
-          log.trace(`${pad('Kitsu')} (${this.type}) ${padID(mediaEntry.id)} Add failed - media already in library`)
+          this.log(mediaEntry.id, 'Exists', lastAction, 'trace', 'Already in library')
+
           await this.getLibraryEntry(mediaEntry)
         } else {
-          log.error(`${pad('Kitsu')} (${this.type}) ${padID(mediaEntry.id)} Update failed - ${err}`)
-          this.ondata(`${mediaEntry.id} (Failed 1)`)
-          ERRORS.push([mediaEntry.id, err])
+          this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error adding library entry - ${err}`)
         }
       }
     }
@@ -125,12 +144,12 @@ export default class Api {
         filter: { userId, kind: this.type, mediaId: mediaEntry.id },
         page: { limit: 1 }
       })
-      log.trace(`${pad('Kitsu')} (${this.type}) ${padID(mediaEntry.id)} Fetched library entry`)
+
+      this.log(mediaEntry.id, 'Entry', lastAction, 'trace', 'Library entry ID')
+
       await this.updateLibraryEntry(mediaEntry, response[0].id)
     } catch (err) {
-      log.error(`${pad('Kitsu')} (${this.type}) ${padID(mediaEntry.id)} Fetch library entry failed - ${err}`)
-      this.ondata(`${mediaEntry.id} (Failed 2)`)
-      ERRORS.push([mediaEntry.id, err])
+      this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error fetching library entry - ${err}`)
     }
   }
 
@@ -144,12 +163,10 @@ export default class Api {
         progress: 0,
         ratingTwenty: 'null'
       })
-      log.trace(`${pad('Kitsu')} (${this.type}) ${padID(mediaEntry.id)} Updated`)
-      this.ondata(`${mediaEntry.id} (Updated)`)
+
+      this.log(mediaEntry.id, 'Updated', lastAction, 'trace')
     } catch (err) {
-      log.error(`${pad('Kitsu')} (${this.type}) ${padID(mediaEntry.id)} Update failed - ${err}`)
-      this.ondata(`${mediaEntry.id} (Failed 3)`)
-      ERRORS.push([mediaEntry.id, err])
+      this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
     }
   }
 }

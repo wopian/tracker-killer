@@ -1,18 +1,41 @@
 import logger from 'simple-node-logger'
-import leftPad from 'left-pad'
+import pad from 'pad'
+import moment from 'moment'
 
 const argv = require('yargs').argv
 
-// Longest service name (MyAnimeList = 11)
-export const pad = str => leftPad(str, 11)
-// Pad ID values
-export const padID = str => leftPad(str, 6)
+export const diff = lastAction => pad(moment().diff(lastAction, 'seconds', true) + 's', 6)
+
+export const logFile = (level, service, type, ID, action, err) => {
+  let message = `${pad(service, 11)} ${type} ${pad(12, ID)} ${pad(action, 8)} ${err}`
+  switch (level) {
+    case 'trace':
+      log.trace(message)
+      break
+    case 'debug':
+      log.debug(message)
+      break
+    case 'warn':
+      log.warn(message)
+      break
+    case 'error':
+      log.error(message)
+      break
+    case 'fatal':
+      log.fatal(message)
+      break
+    default:
+      log.info(message)
+      break
+  }
+}
+
+export const logList = (ID, action, lastAction) => `${pad(ID.toString(), 12)} ${pad(action, 12)} ${diff(lastAction)}`
 
 export const log = logger.createRollingFileLogger({
   logDirectory: `${__dirname}/../../`,
-  // fileNamePattern: 'tracker-killer-<date>.log',
-  fileNamePattern: 'tracker-killer.log',
-  dateFormat: 'YYYY-MM-DD',
+  fileNamePattern: 'tracker-killer-<date>.log',
+  dateFormat: 'YYYYMMDD',
   timestampFormat: 'YYYY-MM-DD hh:mm:ss.SSS'
 })
 

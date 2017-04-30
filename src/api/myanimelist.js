@@ -1,5 +1,6 @@
 import popura from 'popura'
-import { pad, padID, log } from '../util'
+import moment from 'moment'
+import { logFile, logList } from '../util'
 import { MYANIMELIST } from '../env'
 
 const client = popura(MYANIMELIST.USERNAME, MYANIMELIST.PASSWORD)
@@ -35,50 +36,58 @@ const options = {
     retail_volumes: 0
   }
 }
-let ERRORS = []
+let lastAction
 
 export default class Api {
   constructor (type) {
+    lastAction = moment()
     this.type = type.toLowerCase()
     this.limit = { anime: 35578, manga: 106857 }
-    log.info(`${pad('MyAnimeList')} (${this.type}) Connected to ${MYANIMELIST.USERNAME}`)
-    this.main(0)
+    this.start()
   }
 
-  async main (ID) {
+  async log (ID = '', action = '', last, level = 'info', err = '') {
+    logFile(level, 'MyAnimeList', this.type, ID, action, err)
+    this.ondata(logList(ID, action, last))
+    lastAction = moment()
+  }
+
+  async start () {
+    if (await this.ondata) {
+      this.log(undefined, `Connected to ${MYANIMELIST.USERNAME}`, lastAction, 'info')
+      this.next(0)
+    } else this.start()
+  }
+
+  next (ID) {
+    if (ID === this.limit[this.type]) {
+      if (this.oncomplete) {
+        this.log(undefined, 'Finished', undefined, 'info')
+        this.oncomplete()
+      }
+    } else this.checkType(++ID)
+  }
+
+  async checkType (ID) {
     if (await this.ondata) {
       if (this.type === 'anime') await this.addAnime(ID)
       else if (this.type === 'manga') await this.addManga(ID)
       else {
-        log.error(`${pad('MyAnimeList')} (${this.type}) Invalid media type`)
-        this.onerror('Unknown type')
+        this.log(undefined, 'Unknown media type', lastAction, 'error')
       }
     }
 
     await this.next(ID)
   }
 
-  next (ID) {
-    if (ID === this.limit[this.type]) {
-      if (this.oncomplete) {
-        // Dump errors
-        log.info(`${pad('MyAnimeList')} (${this.type}) Finished with ${ERRORS.length} errors`)
-        if (ERRORS.length) log.error(ERRORS)
-        this.oncomplete()
-      }
-    } else this.main(++ID)
-  }
-
   async addAnime (ID) {
     await client.addAnime(ID, options.anime)
     .then(res => {
-      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
-      this.ondata(`${ID} (${res})`)
+      this.log(ID, res, lastAction, 'trace')
     })
     .catch(async err => {
-      log.debug(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - ${err}`)
-      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - attempting to update`)
-      ERRORS.push([ID, err])
+      this.log(ID, 'Exists?', lastAction, 'trace', `Attempting to update - ${err}`)
+
       await this.updateAnime(ID)
     })
   }
@@ -86,17 +95,13 @@ export default class Api {
   async updateAnime (ID) {
     await client.updateAnime(ID, options.anime)
     .then(res => {
-      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
-      this.ondata(`${ID} (${res})`)
+      this.log(ID, res, lastAction, 'trace')
     })
     .catch(err => {
       if (err.statusCode === 400) {
-        log.warn(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - media may not exist`)
-        this.ondata(`${ID} (Does not exist)`)
+        this.log(ID, 'N/A', lastAction, 'trace', `Media may not exist - ${err}`)
       } else {
-        log.error(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - ${err}`)
-        this.ondata(`${ID} (Unknown error)`)
-        ERRORS.push([ID, err])
+        this.log(ID, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
       }
     })
   }
@@ -104,13 +109,11 @@ export default class Api {
   async addManga (ID) {
     await client.addManga(ID, options.manga)
     .then(res => {
-      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
-      this.ondata(`${ID} (${res})`)
+      this.log(ID, res, lastAction, 'trace')
     })
     .catch(async err => {
-      log.debug(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - ${err}`)
-      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Add failed - attempting to update`)
-      ERRORS.push([ID, err])
+      this.log(ID, 'Exists?', lastAction, 'trace', `Attempting to update - ${err}`)
+
       await this.updateManga(ID)
     })
   }
@@ -118,17 +121,13 @@ export default class Api {
   async updateManga (ID) {
     await client.updateManga(ID, options.manga)
     .then(res => {
-      log.trace(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} ${res}`)
-      this.ondata(`${ID} (${res})`)
+      this.log(ID, res, lastAction, 'trace')
     })
     .catch(err => {
       if (err.statusCode === 400) {
-        log.warn(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - media may not exist`)
-        this.ondata(`${ID} (Does not exist)`)
+        this.log(ID, 'N/A', lastAction, 'trace', `Media may not exist - ${err}`)
       } else {
-        log.error(`${pad('MyAnimeList')} (${this.type}) ${padID(ID)} Update failed - ${err}`)
-        this.ondata(`${ID} (Unknown error)`)
-        ERRORS.push([ID, err])
+        this.log(ID, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
       }
     })
   }
