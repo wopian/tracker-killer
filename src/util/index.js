@@ -46,12 +46,3 @@ if (argv._.includes('DEBUG')) log.setLevel('debug')
 if (argv._.includes('WARN')) log.setLevel('warn')
 if (argv._.includes('ERROR')) log.setLevel('error')
 if (argv._.includes('FATAL')) log.setLevel('fatal')
-
-/*
-log.trace('this is a simple trace log statement (should not show)')
-log.debug('this is a simple debug log statement (should not show)')
-log.info('this is a simple info log statement/entry')
-log.warn('this is a simple warn log statement/entry')
-log.error('this is a simple error log statement/entry')
-log.fatal('this is a simple fatal log statement/entry')
-*/
