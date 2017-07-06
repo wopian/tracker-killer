@@ -2,7 +2,7 @@ os:
 - linux
 - osx
 language: node_js
-node_js: 
+node_js:
 - node
 - 7
 - 6
@@ -13,15 +13,12 @@ cache:
 sudo: false
 matrix:
   fast_finish: true
-before_install:
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.21.3
-- export PATH=$HOME/.yarn/bin:$PATH
-install:
-- travis_retry yarn install
+before_install: yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
 script:
 - yarn test
+after_script: greenkeeper-lockfile-upload
 after_success:
-- test ${TRAVIS_JOB_NUMBER#*.} == 1 && bash yarn.sh
 - test ${TRAVIS_JOB_NUMBER#*.} == 1 && travis_retry yarn global add codeclimate-test-reporter
 - test ${TRAVIS_JOB_NUMBER#*.} == 1 && codeclimate-test-reporter < test/coverage/lcov.info
 addons:
