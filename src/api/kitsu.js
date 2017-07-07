@@ -1,36 +1,16 @@
-import OAuth2 from 'client-oauth2'
-import JsonApi from 'devour-client'
+import Kitsu from 'kitsu'
 import moment from 'moment'
 import { version } from '../../package'
 import { logFile, logList } from '../util'
 import { KITSU } from '../env'
 
-const baseUrl = 'https://kitsu.io/api'
-const Kitsu = new JsonApi({
-  apiUrl: `${baseUrl}/edge`,
-  logger: false
+const kitsu = new Kitsu({
+  headers: {
+    'user-agent': `trackerKiller/${version} (https://github.com/wopian/tracker-killer)`
+  }
 })
 
-let auth, userId, lastAction
-
-Kitsu.headers['User-Agent'] = `trackerKiller/${version} (wopian)`
-
-Kitsu.define('user', {}, { collectionPath: 'users' })
-Kitsu.define('anime', {}, { collectionPath: 'anime' })
-Kitsu.define('manga', {}, { collectionPath: 'manga' })
-Kitsu.define('libraryEntry', {
-  status: '',
-  progress: '',
-  rating: '',
-  media: {
-    jsonApi: 'hasOne',
-    type: 'anime' | 'manga'
-  },
-  user: {
-    jsonApi: 'hasOne',
-    type: 'users'
-  }
-}, { collectionPath: 'library-entries' })
+let userId, lastAction
 
 export default class Api {
   constructor (type) {
@@ -58,30 +38,21 @@ export default class Api {
   }
 
   async auth () {
-    auth = await new OAuth2({
+    await kitsu.auth({
       clientId: KITSU.CLIENT_ID,
       clientSecret: KITSU.CLIENT_SECRET,
-      accessTokenUri: `${baseUrl}/oauth/token`
+      username: KITSU.USERNAME,
+      password: KITSU.PASSWORD
     })
-
-    let { accessToken } = await auth.owner.getToken(KITSU.USERNAME, KITSU.PASSWORD)
-    Kitsu.headers['Authorization'] = await `Bearer ${accessToken}`
     this.log(undefined, `Connected to ${KITSU.USERNAME}`, lastAction, 'info')
-
     await this.getUser()
     await this.getMedia(0)
   }
 
   async getUser () {
     try {
-      let response = await Kitsu.findAll('user', {
-        fields: { users: 'id' },
-        filter: { name: KITSU.USERNAME },
-        page: { limit: 1 }
-      })
-
-      userId = await response[0].id
-
+      let { id } = await kitsu.whoAmI({ compact: true })
+      userId = await id
       this.log(undefined, `Linked ${KITSU.USERNAME} with ${userId}`, lastAction, 'info')
     } catch (err) {
       this.log(undefined, `Error getting ID of ${KITSU.USERNAME}`, lastAction, 'error', err)
@@ -89,49 +60,48 @@ export default class Api {
   }
 
   async getMedia (offset) {
-    let response
-
     try {
-      response = await Kitsu.findAll(this.type, {
+      const { data, links } = await kitsu.get(this.type, {
         fields: { anime: 'id', manga: 'id' },
         page: { limit: 20, offset }
       })
 
       this.log(`${offset}-${offset + 20}`, 'Fetched', lastAction, 'trace')
-
-      await this.addLibraryEntry(response)
+      await this.addLibraryEntry(data)
       // Load next page if it exists
-      if (response.links.next) await this.getMedia(offset + 20)
+      if (links.next) await this.getMedia(offset + 20)
       else if (this.oncomplete) {
         this.log(undefined, 'Finished', undefined, 'info')
         this.oncomplete()
       }
     } catch (err) {
-      this.log(`${offset}-${offset + 20}`, 'Failed', lastAction, 'error', `Error fetching media - ${err}`)
+      this.log(`${offset}-${offset + 20}`, 'Failed', lastAction, 'error', `Error fetching media - ${JSON.stringify(err)}`)
     }
   }
 
   // Create a new library entry
   async addLibraryEntry (media) {
-    for (let mediaEntry of await media) {
+    for (let mediaEntry in await media) {
       try {
-        await Kitsu.create('libraryEntry', {
-          media: { type: this.type, id: mediaEntry.id },
+        await kitsu.post('libraryEntries', {
+          media: { type: this.type, id: media[mediaEntry].id },
           user: { id: userId },
           status: 'planned',
-          progress: 0,
-          ratingTwenty: 'null'
+          progress: 0
         })
 
-        this.log(mediaEntry.id, 'Added', lastAction, 'trace')
+        this.log(media[mediaEntry].id, 'Added', lastAction, 'trace')
       } catch (err) {
-        // User already has media in their library
-        if (await err.animeId === 'has already been taken' || await err.mangaId === 'has already been taken') {
-          this.log(mediaEntry.id, 'Exists', lastAction, 'trace', 'Already in library')
-
-          await this.getLibraryEntry(mediaEntry)
+        if (err.errors && err.errors.constructor === Array) {
+          for (let error of await err.errors) {
+            // User already has media in their library
+            if (error.title === 'has already been taken') {
+              this.log(media[mediaEntry].id, 'Exists', lastAction, 'trace', 'Already in library')
+              await this.getLibraryEntry(media[mediaEntry])
+            }
+          }
         } else {
-          this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error adding library entry - ${err}`)
+          this.log(media[mediaEntry].id, 'Failed', lastAction, 'error', `Error adding library entry - ${JSON.stringify(err)}`)
         }
       }
     }
@@ -140,14 +110,12 @@ export default class Api {
   // Get library entry to find its ID
   async getLibraryEntry (mediaEntry) {
     try {
-      let response = await Kitsu.findAll('libraryEntry', {
+      let { data } = await kitsu.get('libraryEntries', {
         filter: { userId, kind: this.type, mediaId: mediaEntry.id },
         page: { limit: 1 }
       })
-
       this.log(mediaEntry.id, 'Entry', lastAction, 'trace', 'Library entry ID')
-
-      await this.updateLibraryEntry(mediaEntry, response[0].id)
+      await this.updateLibraryEntry(mediaEntry, data[0].id)
     } catch (err) {
       this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error fetching library entry - ${err}`)
     }
@@ -155,18 +123,18 @@ export default class Api {
 
   async updateLibraryEntry (mediaEntry, entryId) {
     try {
-      await Kitsu.update('libraryEntry', {
+      kitsu.patch('libraryEntries', {
         id: entryId,
-        media: { type: this.type, id: mediaEntry.id },
-        user: { id: userId },
         status: 'planned',
-        progress: 0,
-        ratingTwenty: 'null'
+        progress: 0
       })
-
       this.log(mediaEntry.id, 'Updated', lastAction, 'trace')
     } catch (err) {
-      this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
+      if (err.errors && err.errors.constructor === Array) {
+        err.errors.forEach(error => {
+          this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error adding library entry - ${error}`)
+        })
+      } else this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error adding library entry - ${JSON.stringify(err)}`)
     }
   }
 }
