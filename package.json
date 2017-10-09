@@ -24,7 +24,7 @@
     "babel-preset-env": "~1.6.0",
     "babel-preset-stage-0": "~6.24.1",
     "inquirer": "~3.3.0",
-    "kitsu": "~2.0.0",
+    "kitsu": "~3.0.0",
     "listr": "~0.12.0",
     "moment": "~2.18.1",
     "pad": "~1.1.0",
