@@ -1394,9 +1394,9 @@ eslint-module-utils@^2.1.1:
     debug "^2.6.8"
     pkg-dir "^1.0.0"
 
-eslint-plugin-import@~2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.7.0.tgz#21de33380b9efb55f5ef6d2e210ec0e07e7fa69f"
+eslint-plugin-import@2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.8.0.tgz#fa1b6ef31fcb3c501c09859c1b86f1fc5b986894"
   dependencies:
     builtin-modules "^1.1.1"
     contains-path "^0.1.0"
@@ -1409,7 +1409,7 @@ eslint-plugin-import@~2.7.0:
     minimatch "^3.0.3"
     read-pkg-up "^2.0.0"
 
-eslint-plugin-node@5.2.0:
+eslint-plugin-node@~5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-node/-/eslint-plugin-node-5.2.0.tgz#e1efca04a385516cff3f2f04027ce8c5ae6db749"
   dependencies:
@@ -1433,7 +1433,7 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@4.8.0:
+eslint@~4.8.0:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.8.0.tgz#229ef0e354e0e61d837c7a80fdfba825e199815e"
   dependencies:
@@ -2721,7 +2721,7 @@ p-timeout@^1.1.1:
   dependencies:
     p-finally "^1.0.0"
 
-pad@2.0.1:
+pad@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/pad/-/pad-2.0.1.tgz#a371bc135048da6f4c260a2aef245132cbdd0f8c"
   dependencies:
