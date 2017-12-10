@@ -1,12 +1,14 @@
 # Tracker Killer
 
-[![Github Rl]][1]
-[![Travis]][2]
-[![AppVeyor]][3]
-[![CC Coverage]][4]
-[![CC Score]][5]
-[![CC Issues]][6]
-[![David]][7]
+[![release badge]][release]
+[![david badge]][david]
+[![donate badge]][donate]
+
+[![travis badge]][travis]
+[![appveyor badge]][appveyor]
+[![cc maintainability badge]][cc maintainability]
+[![cc issues]][cc issues]
+[![david dev badge]][david dev]
 
 This was built as an experiment to see how well anime/manga tracking sites deal with ludicrously
 large libraries. As such, it currently allows testing the following:
@@ -137,9 +139,9 @@ these services without warning ⚠️️</p></strong>
 
 ### Requirements
 
-- [git](https://git-scm.com/) 2.0.0 or newer
-- [node.js](https://nodejs.org) 7.0.0 or newer
-- [yarn](https://https://yarnpkg.com) 0.21.0 or newer (optional)
+- [git] `> 2.0.0`
+- [node] `> 8.0.0`
+- [yarn] `> 1.0.0` (optional)
 
 ### Setup
 
@@ -153,7 +155,7 @@ these services without warning ⚠️️</p></strong>
 1. Install dependencies:
 
     ```bash
-    yarn install
+    yarn
     # or
     npm install
     ```
@@ -186,26 +188,37 @@ WIP
 
 ## Releases
 
-See [CHANGELOG][8]
+See [CHANGELOG]
 
 ## License
 
-All code released under the [MIT license][9]
+All code released under the [MIT license]
 
-[GitHub Rl]:https://img.shields.io/github/release/wopian/tracker-killer.svg?style=flat-square
-[Travis]:https://img.shields.io/travis/wopian/tracker-killer/master.svg?style=flat-square&label=linux%20%26%20macOS
-[CC Coverage]:https://img.shields.io/codeclimate/coverage/github/wopian/tracker-killer.svg?style=flat-square
-[CC Score]:https://img.shields.io/codeclimate/github/wopian/tracker-killer.svg?style=flat-square
-[CC Issues]:https://img.shields.io/codeclimate/issues/github/wopian/tracker-killer.svg?style=flat-square
-[David]:https://img.shields.io/david/wopian/tracker-killer.svg?style=flat-square
-[AppVeyor]:https://img.shields.io/appveyor/ci/wopian/tracker-killer/master.svg?style=flat-square&label=windows
+[git]:https://git-scm.com
+[node]:https://nodejs.org
+[yarn]:https://yarnpkg.com
 
-[1]:https://github.com/wopian/tracker-killer/releases
-[2]:https://travis-ci.org/wopian/tracker-killer
-[3]:https://ci.appveyor.com/project/wopian/tracker-killer
-[4]:https://codeclimate.com/github/wopian/tracker-killer/coverage
-[5]:https://codeclimate.com/github/wopian/tracker-killer
-[6]:https://codeclimate.com/github/wopian/tracker-killer/issues
-[7]:https://david-dm.org/wopian/tracker-killer
-[8]:https://github.com/wopian/tracker-killer/blob/master/CHANGELOG.md
-[9]:https://github.com/wopian/tracker-killer/blob/master/LICENSE.md
+[CHANGELOG]:CHANGELOG.md
+[MIT]:LICENSE.md
+
+[release]:https://github.com/wopian/tracker-killer/releases
+[release badge]:https://img.shields.io/github/release/wopian/tracker-killer.svg?style=flat-square
+
+[david]:https://david-dm.org/wopian/tracker-killer
+[david badge]:https://img.shields.io/david/wopian/tracker-killer.svg?style=flat-square
+[david dev]:https://david-dm.org/wopian/tracker-killer?type=dev
+[david dev badge]:https://img.shields.io/david/dev/wopian/tracker-killer.svg?style=flat-square
+
+[travis]:https://travis-ci.org/wopian/tracker-killer
+[travis badge]:https://img.shields.io/travis/wopian/tracker-killer/master.svg?style=flat-square&label=linux%20%26%20macOS
+
+[appveyor]:https://ci.appveyor.com/project/wopian/tracker-killer
+[appveyor badge]:https://img.shields.io/appveyor/ci/wopian/tracker-killer/master.svg?style=flat-square&label=windows
+
+[cc maintainability]:https://codeclimate.com/github/wopian/tracker-killer
+[cc maintainability badge]:https://img.shields.io/codeclimate/maintainability/wopian/tracker-killer.svg?style=flat-square
+[cc issues]:https://codeclimate.com/github/wopian/tracker-killer/issues
+[cc issues badge]:https://img.shields.io/codeclimate/issues/github/wopian/tracker-killer.svg?style=flat-square
+
+[donate]:https://www.paypal.me/wopian
+[donate badge]:https://img.shields.io/badge/£-donate-ff69b4.svg?style=flat-square
