@@ -7,7 +7,7 @@
 [![travis badge]][travis]
 [![appveyor badge]][appveyor]
 [![cc maintainability badge]][cc maintainability]
-[![cc issues]][cc issues]
+[![cc issues badge]][cc issues]
 [![david dev badge]][david dev]
 
 This was built as an experiment to see how well anime/manga tracking sites deal with ludicrously
