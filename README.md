@@ -220,5 +220,5 @@ All code released under the [MIT license]
 [cc issues]:https://codeclimate.com/github/wopian/tracker-killer/issues
 [cc issues badge]:https://img.shields.io/codeclimate/issues/github/wopian/tracker-killer.svg?style=flat-square
 
-[donate]:https://paypal.me/pools/c/7ZZSVeBON7
-[donate badge]:https://img.shields.io/badge/£-donate-ff69b4.svg?style=flat-square
+[donate]:https://www.patreon.com/wopian
+[donate badge]:https://img.shields.io/badge/patreon-donate-ff69b4.svg?style=flat-square
