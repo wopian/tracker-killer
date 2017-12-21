@@ -42,5 +42,44 @@
     "eslint-plugin-standard": "~3.0.1",
     "phantomas": "~1.19.0",
     "phantomjs-prebuilt": "~2.1.14"
+  },
+  "renovate": {
+    "extends": [
+      "config:base"
+    ],
+    "assignees": [
+      "wopian"
+    ],
+    "pinVersions": false,
+    "automerge": false,
+    "commitMessage": "chore(deps): update {{depName}} to {{newVersion}}",
+    "labels": [
+      "dependencies"
+    ],
+    "lockFileMaintenance": {
+      "enabled": false
+    },
+    "semanticCommits": true,
+    "separateMajorReleases": false,
+    "unpublishSafe": true,
+    "schedule": [
+      "before 5am on monday"
+    ],
+    "prCreation": "not-pending",
+    "prTitle": "chore(deps): {{#if isPin}}pin{{else}}update{{/if}} {{depName}} to {{#if isRange}}{{newVersion}}{{else}}{{#if isMajor}}{{newVersionMajor}}.x{{else}}{{newVersion}}{{/if}}{{/if}}",
+    "packageRules": [
+      {
+        "packagePatterns": [
+          "^eslint"
+        ],
+        "groupName": "eslint"
+      },
+      {
+        "packagePatterns": [
+          "^babel"
+        ],
+        "groupName": "babel"
+      }
+    ]
   }
 }
