@@ -61,8 +61,7 @@
       ":label(dependencies)",
       ":timezone(Europe/London)",
       ":assignee(wopian)",
-      "group:babelMonorepo",
-      "group:linters"
+      "group:babelMonorepo"
     ],
     "prTitle": "update {{depName}} to {{newVersion}}",
     "commitMessage": "update {{depName}} to {{newVersion}}"
