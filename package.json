@@ -50,7 +50,7 @@
       ":combinePatchMinorReleases",
       ":renovatePrefix",
       ":semanticCommits",
-      ":semanticPrefixChore",
+      ":semanticCommitTypeAll(chore)",
       ":rebaseStalePrs",
       ":unpublishSafe",
       ":prNotPending",
