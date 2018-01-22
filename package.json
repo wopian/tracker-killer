@@ -30,7 +30,7 @@
     "pad": "~2.0.1",
     "popura": "~1.2.5",
     "simple-node-logger": "~0.93.20",
-    "yargs": "~10.1.0"
+    "yargs": "~11.0.0"
   },
   "devDependencies": {
     "babel-eslint": "~8.2.0",
