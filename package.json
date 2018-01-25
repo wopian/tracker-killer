@@ -40,7 +40,7 @@
     "eslint-plugin-node": "~5.2.0",
     "eslint-plugin-promise": "~3.6.0",
     "eslint-plugin-standard": "~3.0.1",
-    "phantomas": "~1.19.0",
+    "phantomas": "~1.20.0",
     "phantomjs-prebuilt": "~2.1.14"
   },
   "renovate": {
