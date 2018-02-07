@@ -1,10 +1,5 @@
 root: true
-extends: standard
-parser: babel-eslint
-parserOptions:
-  ecmaVersion: 7
-  ecmaFeatures:
-    modules: true
+extends: wopian
 globals:
   Observable: true
 env:

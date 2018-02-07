@@ -82,53 +82,53 @@ export default class Api {
 
   async addAnime (ID) {
     await client.addAnime(ID, options.anime)
-    .then(res => {
-      this.log(ID, res, lastAction, 'trace')
-    })
-    .catch(async err => {
-      this.log(ID, 'Exists?', lastAction, 'trace', `Attempting to update - ${err}`)
+      .then(res => {
+        this.log(ID, res, lastAction, 'trace')
+      })
+      .catch(async err => {
+        this.log(ID, 'Exists?', lastAction, 'trace', `Attempting to update - ${err}`)
 
-      await this.updateAnime(ID)
-    })
+        await this.updateAnime(ID)
+      })
   }
 
   async updateAnime (ID) {
     await client.updateAnime(ID, options.anime)
-    .then(res => {
-      this.log(ID, res, lastAction, 'trace')
-    })
-    .catch(err => {
-      if (err.statusCode === 400) {
-        this.log(ID, 'N/A', lastAction, 'trace', `Media may not exist - ${err}`)
-      } else {
-        this.log(ID, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
-      }
-    })
+      .then(res => {
+        this.log(ID, res, lastAction, 'trace')
+      })
+      .catch(err => {
+        if (err.statusCode === 400) {
+          this.log(ID, 'N/A', lastAction, 'trace', `Media may not exist - ${err}`)
+        } else {
+          this.log(ID, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
+        }
+      })
   }
 
   async addManga (ID) {
     await client.addManga(ID, options.manga)
-    .then(res => {
-      this.log(ID, res, lastAction, 'trace')
-    })
-    .catch(async err => {
-      this.log(ID, 'Exists?', lastAction, 'trace', `Attempting to update - ${err}`)
+      .then(res => {
+        this.log(ID, res, lastAction, 'trace')
+      })
+      .catch(async err => {
+        this.log(ID, 'Exists?', lastAction, 'trace', `Attempting to update - ${err}`)
 
-      await this.updateManga(ID)
-    })
+        await this.updateManga(ID)
+      })
   }
 
   async updateManga (ID) {
     await client.updateManga(ID, options.manga)
-    .then(res => {
-      this.log(ID, res, lastAction, 'trace')
-    })
-    .catch(err => {
-      if (err.statusCode === 400) {
-        this.log(ID, 'N/A', lastAction, 'trace', `Media may not exist - ${err}`)
-      } else {
-        this.log(ID, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
-      }
-    })
+      .then(res => {
+        this.log(ID, res, lastAction, 'trace')
+      })
+      .catch(err => {
+        if (err.statusCode === 400) {
+          this.log(ID, 'N/A', lastAction, 'trace', `Media may not exist - ${err}`)
+        } else {
+          this.log(ID, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
+        }
+      })
   }
 }

@@ -6,6 +6,7 @@
   "author": "James Harris <wopian@wopian.me>",
   "scripts": {
     "start": "babel-node --presets env,stage-0 src/main.js",
+    "lint": "eslint src",
     "test": " "
   },
   "main": "src/main.js",
@@ -36,11 +37,7 @@
   "devDependencies": {
     "babel-eslint": "~8.2.0",
     "eslint": "~4.17.0",
-    "eslint-config-standard": "~10.2.0",
-    "eslint-plugin-import": "~2.8.0",
-    "eslint-plugin-node": "~6.0.0",
-    "eslint-plugin-promise": "~3.6.0",
-    "eslint-plugin-standard": "~3.0.1",
+    "eslint-config-wopian": "~1.0.4",
     "phantomas": "~1.20.0",
     "phantomjs-prebuilt": "~2.1.14"
   },
