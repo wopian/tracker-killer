@@ -1,10 +1,11 @@
 import Kitsu from 'kitsu'
+import OAuth2 from 'client-oauth2'
 import moment from 'moment'
 import { version } from '../../package'
 import { logFile, logList } from '../util'
 import { KITSU } from '../env'
 
-const kitsu = new Kitsu({
+const api = new Kitsu({
   headers: {
     'user-agent': `trackerKiller/${version} (https://github.com/wopian/tracker-killer)`
   }
@@ -38,20 +39,25 @@ export default class Api {
   }
 
   async auth () {
-    await kitsu.auth({
-      clientId: KITSU.CLIENT_ID,
-      clientSecret: KITSU.CLIENT_SECRET,
-      username: KITSU.USERNAME,
-      password: KITSU.PASSWORD
-    })
-    this.log(undefined, `Connected to ${KITSU.USERNAME}`, lastAction, 'info')
-    await this.getUser()
-    await this.getMedia(0)
+    try {
+      const { owner } = new OAuth2({
+        clientId: KITSU.CLIENT_ID,
+        clientSecret: KITSU.CLIENT_SECRET,
+        accessTokenUri: 'https://kitsu.io/api/oauth/token'
+      })
+      const { data } = await owner.getToken(KITSU.USERNAME, KITSU.PASSWORD)
+      api.headers['Authorization'] = `Bearer ${data.access_token}`
+      this.log(undefined, `Connected to ${KITSU.USERNAME}`, lastAction, 'info')
+      await this.getUser()
+      await this.getMedia(0)
+    } catch (err) {
+      throw err
+    }
   }
 
   async getUser () {
     try {
-      let { id } = await kitsu.whoAmI({ compact: true })
+      let { id } = await api.self()
       userId = await id
       this.log(undefined, `Linked ${KITSU.USERNAME} with ${userId}`, lastAction, 'info')
     } catch (err) {
@@ -61,7 +67,7 @@ export default class Api {
 
   async getMedia (offset) {
     try {
-      const { data, links } = await kitsu.get(this.type, {
+      const { data, links } = await api.get(this.type, {
         fields: { anime: 'id', manga: 'id' },
         page: { limit: 20, offset }
       })
@@ -83,7 +89,7 @@ export default class Api {
   async addLibraryEntry (media) {
     for (let mediaEntry in await media) {
       try {
-        await kitsu.post('libraryEntries', {
+        await api.post('libraryEntries', {
           media: { type: this.type, id: media[mediaEntry].id },
           user: { id: userId },
           status: 'planned',
@@ -110,7 +116,7 @@ export default class Api {
   // Get library entry to find its ID
   async getLibraryEntry (mediaEntry) {
     try {
-      let { data } = await kitsu.get('libraryEntries', {
+      let { data } = await api.get('libraryEntries', {
         filter: { userId, kind: this.type, mediaId: mediaEntry.id },
         page: { limit: 1 }
       })
@@ -123,7 +129,7 @@ export default class Api {
 
   async updateLibraryEntry (mediaEntry, entryId) {
     try {
-      kitsu.patch('libraryEntries', {
+      api.patch('libraryEntries', {
         id: entryId,
         status: 'planned',
         progress: 0
