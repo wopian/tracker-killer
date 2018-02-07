@@ -42,7 +42,7 @@ export default class Api {
   constructor (type) {
     lastAction = moment()
     this.type = type.toLowerCase()
-    this.limit = { anime: 35578, manga: 106857 }
+    this.limit = { anime: 37259, manga: 112495 }
     this.start()
   }
 

@@ -11,7 +11,7 @@ export default class Api {
   constructor (type) {
     lastAction = moment()
     this.type = type.toLowerCase()
-    this.limit = { anime: 5381 }
+    this.limit = { anime: 5734 }
     this.main(1)
   }
 
