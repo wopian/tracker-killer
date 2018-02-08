@@ -41,28 +41,29 @@ let lastAction
 export default class Api {
   constructor (type) {
     lastAction = moment()
+    this.requests = 0
     this.type = type.toLowerCase()
     this.limit = { anime: 37259, manga: 112495 }
     this.start()
   }
 
-  async log (ID = '', action = '', last, level = 'info', err = '') {
-    logFile(level, 'MyAnimeList', this.type, ID, action, err)
-    this.ondata(logList(ID, action, last))
+  async log (ID = '', action = '', last, level = 'info', requests = this.requests, err = '') {
+    logFile(level, 'MyAnimeList', this.type, ID, action, err, requests)
+    this.ondata(logList(ID, action, last, requests))
     lastAction = moment()
   }
 
-  async start () {
+  async start (ID = 0) {
     if (await this.ondata) {
       this.log(undefined, `Connected to ${MYANIMELIST.USERNAME}`, lastAction, 'info')
-      this.next(0)
-    } else this.start()
+      this.next(ID)
+    } else this.start(ID)
   }
 
   next (ID) {
     if (ID === this.limit[this.type]) {
       if (this.oncomplete) {
-        this.log(undefined, 'Finished', undefined, 'info')
+        this.log(undefined, 'Finished', undefined, 'info', this.requests)
         this.oncomplete()
       }
     } else this.checkType(++ID)
@@ -83,10 +84,10 @@ export default class Api {
   async addAnime (ID) {
     await client.addAnime(ID, options.anime)
       .then(res => {
-        this.log(ID, res, lastAction, 'trace')
+        this.log(ID, res, lastAction, 'trace', ++this.requests)
       })
       .catch(async err => {
-        this.log(ID, 'Exists?', lastAction, 'trace', `Attempting to update - ${err}`)
+        this.log(ID, 'Exists?', lastAction, 'trace', ++this.requests, `Attempting to update - ${err}`)
 
         await this.updateAnime(ID)
       })
@@ -95,13 +96,13 @@ export default class Api {
   async updateAnime (ID) {
     await client.updateAnime(ID, options.anime)
       .then(res => {
-        this.log(ID, res, lastAction, 'trace')
+        this.log(ID, res, lastAction, 'trace', ++this.requests)
       })
       .catch(err => {
         if (err.statusCode === 400) {
-          this.log(ID, 'N/A', lastAction, 'trace', `Media may not exist - ${err}`)
+          this.log(ID, 'N/A', lastAction, 'trace', ++this.requests, `Media may not exist - ${err}`)
         } else {
-          this.log(ID, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
+          this.log(ID, 'Failed', lastAction, 'error', ++this.requests, `Error updating library entry - ${err}`)
         }
       })
   }
@@ -109,10 +110,10 @@ export default class Api {
   async addManga (ID) {
     await client.addManga(ID, options.manga)
       .then(res => {
-        this.log(ID, res, lastAction, 'trace')
+        this.log(ID, res, lastAction, 'trace', ++this.requests)
       })
       .catch(async err => {
-        this.log(ID, 'Exists?', lastAction, 'trace', `Attempting to update - ${err}`)
+        this.log(ID, 'Exists?', lastAction, 'trace', ++this.requests, `Attempting to update - ${err}`)
 
         await this.updateManga(ID)
       })
@@ -121,13 +122,13 @@ export default class Api {
   async updateManga (ID) {
     await client.updateManga(ID, options.manga)
       .then(res => {
-        this.log(ID, res, lastAction, 'trace')
+        this.log(ID, res, lastAction, 'trace', ++this.requests)
       })
       .catch(err => {
         if (err.statusCode === 400) {
-          this.log(ID, 'N/A', lastAction, 'trace', `Media may not exist - ${err}`)
+          this.log(ID, 'N/A', lastAction, 'trace', ++this.requests, `Media may not exist - ${err}`)
         } else {
-          this.log(ID, 'Failed', lastAction, 'error', `Error updating library entry - ${err}`)
+          this.log(ID, 'Failed', lastAction, 'error', ++this.requests, `Error updating library entry - ${err}`)
         }
       })
   }

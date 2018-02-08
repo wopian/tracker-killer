@@ -16,13 +16,14 @@ let userId, lastAction
 export default class Api {
   constructor (type) {
     lastAction = moment()
+    this.requests = 0
     this.type = type.toLowerCase()
     this.setup()
   }
 
-  async log (ID = '', action = '', last, level = 'info', err = '') {
-    logFile(level, 'Kitsu', this.type, ID, action, err)
-    this.ondata(logList(ID, action, last))
+  async log (ID = '', action = '', last, level = 'info', requests = this.requests, err = '') {
+    logFile(level, 'Kitsu', this.type, ID, action, err, requests)
+    this.ondata(logList(ID, action, last, requests))
     lastAction = moment()
   }
 
@@ -49,7 +50,7 @@ export default class Api {
       api.headers['Authorization'] = `Bearer ${data.access_token}`
       this.log(undefined, `Connected to ${KITSU.USERNAME}`, lastAction, 'info')
       await this.getUser()
-      await this.getMedia(0)
+      await this.getMedia()
     } catch (err) {
       throw err
     }
@@ -65,23 +66,23 @@ export default class Api {
     }
   }
 
-  async getMedia (offset) {
+  async getMedia (offset = 0) {
     try {
       const { data, links } = await api.get(this.type, {
         fields: { anime: 'id', manga: 'id' },
         page: { limit: 20, offset }
       })
 
-      this.log(`${offset}-${offset + 20}`, 'Fetched', lastAction, 'trace')
+      this.log(`${offset}-${offset + 20}`, 'Fetched', lastAction, 'trace', ++this.requests)
       await this.addLibraryEntry(data)
       // Load next page if it exists
       if (links.next) await this.getMedia(offset + 20)
       else if (this.oncomplete) {
-        this.log(undefined, 'Finished', undefined, 'info')
+        this.log(undefined, 'Finished', undefined, 'info', this.requests)
         this.oncomplete()
       }
     } catch (err) {
-      this.log(`${offset}-${offset + 20}`, 'Failed', lastAction, 'error', `Error fetching media - ${JSON.stringify(err)}`)
+      this.log(`${offset}-${offset + 20}`, 'Failed', lastAction, 'error', ++this.requests, `Error fetching media - ${JSON.stringify(err)}`)
     }
   }
 
@@ -96,18 +97,18 @@ export default class Api {
           progress: 0
         })
 
-        this.log(media[mediaEntry].id, 'Added', lastAction, 'trace')
+        this.log(media[mediaEntry].id, 'Added', lastAction, 'trace', ++this.requests)
       } catch (err) {
         if (err.errors && err.errors.constructor === Array) {
           for (let error of await err.errors) {
             // User already has media in their library
             if (error.title === 'has already been taken') {
-              this.log(media[mediaEntry].id, 'Exists', lastAction, 'trace', 'Already in library')
+              this.log(media[mediaEntry].id, 'Exists', lastAction, 'trace', ++this.requests, 'Already in library')
               await this.getLibraryEntry(media[mediaEntry])
             }
           }
         } else {
-          this.log(media[mediaEntry].id, 'Failed', lastAction, 'error', `Error adding library entry - ${JSON.stringify(err)}`)
+          this.log(media[mediaEntry].id, 'Failed', lastAction, 'error', ++this.requests, `Error adding library entry - ${JSON.stringify(err)}`)
         }
       }
     }
@@ -120,10 +121,10 @@ export default class Api {
         filter: { userId, kind: this.type, mediaId: mediaEntry.id },
         page: { limit: 1 }
       })
-      this.log(mediaEntry.id, 'Entry', lastAction, 'trace', 'Library entry ID')
+      this.log(mediaEntry.id, 'Entry', lastAction, 'trace', ++this.requests, 'Library entry ID')
       await this.updateLibraryEntry(mediaEntry, data[0].id)
     } catch (err) {
-      this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error fetching library entry - ${err}`)
+      this.log(mediaEntry.id, 'Failed', lastAction, 'error', ++this.requests, `Error fetching library entry - ${err}`)
     }
   }
 
@@ -134,13 +135,13 @@ export default class Api {
         status: 'planned',
         progress: 0
       })
-      this.log(mediaEntry.id, 'Updated', lastAction, 'trace')
+      this.log(mediaEntry.id, 'Updated', lastAction, 'trace', ++this.requests)
     } catch (err) {
       if (err.errors && err.errors.constructor === Array) {
         err.errors.forEach(error => {
-          this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error adding library entry - ${error}`)
+          this.log(mediaEntry.id, 'Failed', lastAction, 'error', ++this.requests, `Error adding library entry - ${error}`)
         })
-      } else this.log(mediaEntry.id, 'Failed', lastAction, 'error', `Error adding library entry - ${JSON.stringify(err)}`)
+      } else this.log(mediaEntry.id, 'Failed', lastAction, 'error', ++this.requests, `Error adding library entry - ${JSON.stringify(err)}`)
     }
   }
 }

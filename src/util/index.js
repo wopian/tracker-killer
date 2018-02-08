@@ -4,10 +4,10 @@ import moment from 'moment'
 
 const argv = require('yargs').argv
 
-export const diff = lastAction => pad(moment().diff(lastAction, 'seconds', true) + 's', 6)
+export const diff = lastAction => pad(moment().diff(lastAction, 'seconds', true).toFixed(2) + 's', 5)
 
-export const logFile = (level, service, type, ID, action, err) => {
-  let message = `${pad(service, 11)} ${type} ${pad(12, ID)} ${pad(action, 8)} ${err}`
+export const logFile = (level, service, type, ID, action, err, requests) => {
+  let message = `${pad(service, 11)} ${type} ${pad(12, ID)} ${pad(action, 8)} (request ${requests}) ${err}`
   switch (level) {
     case 'trace':
       log.trace(message)
@@ -30,7 +30,7 @@ export const logFile = (level, service, type, ID, action, err) => {
   }
 }
 
-export const logList = (ID, action, lastAction) => `${pad(ID.toString(), 12)} ${pad(action, 12)} ${diff(lastAction)}`
+export const logList = (ID, action, lastAction, requests) => `${pad(ID.toString(), 12)} ${pad(action, 12)} ${pad(diff(lastAction), 12)} Requests: ${requests}`
 
 export const log = logger.createRollingFileLogger({
   logDirectory: `${__dirname}/../../`,
