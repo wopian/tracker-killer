@@ -139,9 +139,9 @@ these services without warning ⚠️️</p></strong>
 
 ### Requirements
 
-- [git] `> 2.0.0`
-- [node] `> 8.0.0`
-- [yarn] `> 1.0.0` (optional)
+- [git] `>= 2.0.0`
+- [node] `>= 8.0.0`
+- [yarn] `>= 1.0.0` (optional)
 
 ### Setup
 
