@@ -25,7 +25,7 @@
     "babel-preset-env": "~1.6.0",
     "babel-preset-stage-0": "~6.24.1",
     "client-oauth2": "~4.2.0",
-    "inquirer": "~5.1.0",
+    "inquirer": "~5.2.0",
     "kitsu": "~5.1.0",
     "listr": "~0.13.0",
     "moment": "~2.22.0",
