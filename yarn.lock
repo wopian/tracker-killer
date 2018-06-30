@@ -1260,9 +1260,11 @@ debug@3.1.0, debug@^3.1.0:
   dependencies:
     ms "2.0.0"
 
-decamelize@^1.1.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
+decamelize@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-2.0.0.tgz#656d7bbc8094c4c788ea53c5840908c9c7d063c7"
+  dependencies:
+    xregexp "4.0.0"
 
 decode-uri-component@^0.2.0:
   version "0.2.0"
@@ -1698,11 +1700,17 @@ find-up@^1.0.0:
     path-exists "^2.0.0"
     pinkie-promise "^2.0.0"
 
-find-up@^2.0.0, find-up@^2.1.0:
+find-up@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   dependencies:
     locate-path "^2.0.0"
+
+find-up@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/find-up/-/find-up-3.0.0.tgz#49169f1d7993430646da61ecc5ae355c21c97b73"
+  dependencies:
+    locate-path "^3.0.0"
 
 flat-cache@^1.2.1:
   version "1.3.0"
@@ -2379,6 +2387,13 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
+locate-path@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
+  dependencies:
+    p-locate "^3.0.0"
+    path-exists "^3.0.0"
+
 lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
@@ -2732,11 +2747,23 @@ p-limit@^1.1.0:
   dependencies:
     p-try "^1.0.0"
 
+p-limit@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-2.0.0.tgz#e624ed54ee8c460a778b3c9f3670496ff8a57aec"
+  dependencies:
+    p-try "^2.0.0"
+
 p-locate@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-2.0.0.tgz#20a0103b222a70c8fd39cc2e580680f3dde5ec43"
   dependencies:
     p-limit "^1.1.0"
+
+p-locate@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-3.0.0.tgz#322d69a05c0264b25997d9f40cd8a891ab0064a4"
+  dependencies:
+    p-limit "^2.0.0"
 
 p-map@^1.1.1:
   version "1.2.0"
@@ -2745,6 +2772,10 @@ p-map@^1.1.1:
 p-try@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-1.0.0.tgz#cbc79cdbaf8fd4228e13f621f2b1a237c1b207b3"
+
+p-try@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.0.0.tgz#85080bb87c64688fa47996fe8f7dfbe8211760b1"
 
 pad@~2.1.0:
   version "2.1.0"
@@ -3604,9 +3635,13 @@ xmlbuilder@~9.0.1:
   version "9.0.7"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
 
-y18n@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
+xregexp@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/xregexp/-/xregexp-4.0.0.tgz#e698189de49dd2a18cc5687b05e17c8e43943020"
+
+"y18n@^3.2.1 || ^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/y18n/-/y18n-4.0.0.tgz#95ef94f85ecc81d007c264e190a120f0a3c8566b"
 
 yallist@^2.1.2:
   version "2.1.2"
@@ -3620,19 +3655,19 @@ yamlish@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/yamlish/-/yamlish-0.0.7.tgz#b4af9a1dcc63618873c3d6e451ec3213c39a57fb"
 
-yargs-parser@^9.0.2:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-9.0.2.tgz#9ccf6a43460fe4ed40a9bb68f48d43b8a68cc077"
+yargs-parser@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-10.1.0.tgz#7202265b89f7e9e9f2e5765e0fe735a905edbaa8"
   dependencies:
     camelcase "^4.1.0"
 
-yargs@~11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-11.1.0.tgz#90b869934ed6e871115ea2ff58b03f4724ed2d77"
+yargs@~12.0.0:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.1.tgz#6432e56123bb4e7c3562115401e98374060261c2"
   dependencies:
     cliui "^4.0.0"
-    decamelize "^1.1.1"
-    find-up "^2.1.0"
+    decamelize "^2.0.0"
+    find-up "^3.0.0"
     get-caller-file "^1.0.1"
     os-locale "^2.0.0"
     require-directory "^2.1.1"
@@ -3640,8 +3675,8 @@ yargs@~11.1.0:
     set-blocking "^2.0.0"
     string-width "^2.0.0"
     which-module "^2.0.0"
-    y18n "^3.2.1"
-    yargs-parser "^9.0.2"
+    y18n "^3.2.1 || ^4.0.0"
+    yargs-parser "^10.1.0"
 
 yauzl@2.4.1:
   version "2.4.1"
