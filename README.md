@@ -202,7 +202,7 @@ All code released under the [MIT license]
 [MIT]:LICENSE.md
 
 [release]:https://github.com/wopian/tracker-killer/releases
-[release badge]:https://flat.badgen.net/github/wopian/tracker-killer
+[release badge]:https://flat.badgen.net/github/release/wopian/tracker-killer
 
 [david]:https://david-dm.org/wopian/tracker-killer
 [david badge]:https://flat.badgen.net/david/dep/wopian/tracker-killer
