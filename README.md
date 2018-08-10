@@ -202,23 +202,25 @@ All code released under the [MIT license]
 [MIT]:LICENSE.md
 
 [release]:https://github.com/wopian/tracker-killer/releases
-[release badge]:https://img.shields.io/github/release/wopian/tracker-killer.svg?style=flat-square
+[release badge]:https://flat.badgen.net/github/wopian/tracker-killer
 
 [david]:https://david-dm.org/wopian/tracker-killer
-[david badge]:https://img.shields.io/david/wopian/tracker-killer.svg?style=flat-square
+[david badge]:https://flat.badgen.net/david/dep/wopian/tracker-killer
+
 [david dev]:https://david-dm.org/wopian/tracker-killer?type=dev
-[david dev badge]:https://img.shields.io/david/dev/wopian/tracker-killer.svg?style=flat-square
+[david dev badge]:https://flat.badgen.net/david/dev/wopian/tracker-killer
 
 [travis]:https://travis-ci.org/wopian/tracker-killer
-[travis badge]:https://img.shields.io/travis/wopian/tracker-killer/master.svg?style=flat-square&label=linux%20%26%20macOS
+[travis badge]:https://flat.badgen.net/travis/wopian/tracker-killer
 
 [appveyor]:https://ci.appveyor.com/project/wopian/tracker-killer
-[appveyor badge]:https://img.shields.io/appveyor/ci/wopian/tracker-killer/master.svg?style=flat-square&label=windows
+[appveyor badge]:https://flat.badgen.net/appveyor/ci/wopian/tracker-killer
 
 [cc maintainability]:https://codeclimate.com/github/wopian/tracker-killer
 [cc maintainability badge]:https://img.shields.io/codeclimate/maintainability/wopian/tracker-killer.svg?style=flat-square
+
 [cc issues]:https://codeclimate.com/github/wopian/tracker-killer/issues
 [cc issues badge]:https://img.shields.io/codeclimate/issues/github/wopian/tracker-killer.svg?style=flat-square
 
 [donate]:https://paypal.me/wopian
-[donate badge]:https://img.shields.io/badge/support%20me%20on-paypal.me-ff69b4.svg?style=flat-square
+[donate badge]:https://flat.badgen.net/badge/support%20me%20on/paypal.me/pink
