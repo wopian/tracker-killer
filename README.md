@@ -7,7 +7,9 @@
 [![travis badge]][travis]
 [![appveyor badge]][appveyor]
 [![cc maintainability badge]][cc maintainability]
+[![cc debt badge]][cc debt]
 [![cc issues badge]][cc issues]
+[![cc loc badge]][cc loc]
 [![david dev badge]][david dev]
 
 This was built as an experiment to see how well anime/manga tracking sites deal with ludicrously
@@ -217,10 +219,16 @@ All code released under the [MIT license]
 [appveyor badge]:https://flat.badgen.net/appveyor/ci/wopian/tracker-killer
 
 [cc maintainability]:https://codeclimate.com/github/wopian/tracker-killer
-[cc maintainability badge]:https://img.shields.io/codeclimate/maintainability/wopian/tracker-killer.svg?style=flat-square
+[cc maintainability badge]:https://flat.badgen.net/codeclimate/maintainability/wopian/tracker-killer
+
+[cc debt]:https://codeclimate.com/github/wopian/tracker-killer
+[cc debt badge]:https://flat.badgen.net/codeclimate/tech-debt/wopian/tracker-killer
 
 [cc issues]:https://codeclimate.com/github/wopian/tracker-killer/issues
-[cc issues badge]:https://img.shields.io/codeclimate/issues/github/wopian/tracker-killer.svg?style=flat-square
+[cc issues badge]:https://flat.badgen.net/codeclimate/issues/wopian/tracker-killer
+
+[cc loc]:https://codeclimate.com/github/wopian/tracker-killer
+[cc loc badge]:https://flat.badgen.net/codeclimate/loc/wopian/tracker-killer
 
 [donate]:https://paypal.me/wopian
 [donate badge]:https://flat.badgen.net/badge/support%20me%20on/paypal.me/pink
