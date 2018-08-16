@@ -26,7 +26,7 @@
     "babel-preset-stage-0": "~6.24.1",
     "client-oauth2": "~4.2.0",
     "inquirer": "~6.1.0",
-    "kitsu": "~6.1.0",
+    "kitsu": "~6.2.0",
     "listr": "~0.14.0",
     "moment": "~2.22.0",
     "pad": "~2.1.0",
