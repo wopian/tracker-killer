@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "babel-eslint": "~9.0.0",
-    "eslint": "~5.5.0",
+    "eslint": "~5.6.0",
     "eslint-config-wopian": "~1.4.0",
     "phantomas": "~1.20.0",
     "phantomjs-prebuilt": "~2.1.14"
