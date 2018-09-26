@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "James Harris <wopian@wopian.me>",
   "scripts": {
-    "start": "babel-node --presets env,stage-0 src/main.js",
+    "start": "babel-node --presets @babel/env src/main.js",
     "lint": "eslint src",
     "test": " "
   },
@@ -19,11 +19,12 @@
   },
   "homepage": "https://github.com/wopian/tracker-killer#readme",
   "dependencies": {
+    "@babel/cli": "~7.1.0",
+    "@babel/core": "~7.1.0",
+    "@babel/node": "~7.0.0",
+    "@babel/preset-env": "~7.1.0",
     "anilist-api-pt": "~1.0.0",
     "annict": "~0.0.8",
-    "babel-cli": "~6.26.0",
-    "babel-preset-env": "~1.7.0",
-    "babel-preset-stage-0": "~6.24.1",
     "client-oauth2": "~4.2.0",
     "inquirer": "~6.2.0",
     "kitsu": "~6.4.0",
@@ -32,14 +33,13 @@
     "pad": "~2.2.0",
     "popura": "~1.2.5",
     "simple-node-logger": "~0.93.20",
-    "yargs": "~12.0.0"
+    "yargs": "~12.0.0",
+    "zen-observable": "~0.8.9"
   },
   "devDependencies": {
-    "babel-eslint": "~9.0.0",
+    "babel-eslint": "~10.0.0",
     "eslint": "~5.6.0",
-    "eslint-config-wopian": "~1.4.0",
-    "phantomas": "~1.20.0",
-    "phantomjs-prebuilt": "~2.1.14"
+    "eslint-config-wopian": "~1.4.0"
   },
   "renovate": {
     "extends": [

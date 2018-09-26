@@ -1,3 +1,2 @@
 presets:
-- env
-- stage-0
+- '@babel/env'

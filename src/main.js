@@ -1,5 +1,6 @@
 import input from 'inquirer'
 import Listr from 'listr'
+import Observable from 'zen-observable'
 import { log } from './util'
 import Annict from './api/annict'
 import Kitsu from './api/kitsu'
