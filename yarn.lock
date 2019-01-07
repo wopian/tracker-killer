@@ -2982,9 +2982,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-simple-node-logger@~0.93.20:
-  version "0.93.42"
-  resolved "https://registry.yarnpkg.com/simple-node-logger/-/simple-node-logger-0.93.42.tgz#ebc6893ef27a838f12dbd16a71e694976cb0f975"
+simple-node-logger@~18.12.0:
+  version "18.12.21"
+  resolved "https://registry.yarnpkg.com/simple-node-logger/-/simple-node-logger-18.12.21.tgz#9efd084f18acfdead27cad1254d7af3f74768246"
   dependencies:
     lodash "^4.17.10"
     moment "^2.20.1"
