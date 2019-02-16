@@ -20,7 +20,7 @@
   "homepage": "https://github.com/wopian/tracker-killer#readme",
   "dependencies": {
     "@babel/cli": "~7.2.0",
-    "@babel/core": "~7.2.0",
+    "@babel/core": "~7.3.0",
     "@babel/node": "~7.2.0",
     "@babel/preset-env": "~7.3.0",
     "anilist-api-pt": "~1.0.0",
