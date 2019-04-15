@@ -2592,9 +2592,9 @@ p-try@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
 
-pad@~2.2.0:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/pad/-/pad-2.2.3.tgz#098a53265c87952f770a56c938d0994a82943bef"
+pad@~2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/pad/-/pad-2.3.0.tgz#d604f0d5433c3e1500e207279cc5cd0234b1c2aa"
   dependencies:
     wcwidth "^1.0.1"
 
