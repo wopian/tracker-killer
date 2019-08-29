@@ -33,7 +33,7 @@
     "pad": "~3.2.0",
     "popura": "~1.2.5",
     "simple-node-logger": "~0.93.20",
-    "yargs": "~13.3.0",
+    "yargs": "~14.0.0",
     "zen-observable": "~0.8.9"
   },
   "devDependencies": {
