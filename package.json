@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "babel-eslint": "~10.0.0",
-    "eslint": "~6.6.0",
-    "eslint-config-wopian": "~1.4.0"
+    "eslint": "~6.7.0",
+    "eslint-config-wopian": "~1.5.0"
   },
   "renovate": {
     "extends": [
