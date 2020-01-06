@@ -15,8 +15,8 @@ matrix:
 script:
 - yarn test
 after_success:
-- test ${TRAVIS_JOB_NUMBER#*.} == 1 && travis_retry yarn global add codeclimate-test-reporter
-- test ${TRAVIS_JOB_NUMBER#*.} == 1 && codeclimate-test-reporter < test/coverage/lcov.info
+- test ${TRAVIS_JOB_NUMBER#*.} == 1 && test ${TRAVIS_OS_NAME} == "linux" && travis_retry yarn global add codeclimate-test-reporter
+- test ${TRAVIS_JOB_NUMBER#*.} == 1 && test ${TRAVIS_OS_NAME} == "linux" && codeclimate-test-reporter < test/coverage/lcov.info
 addons:
   code_climate:
     repo_token: c656b95d5435de5200989ba0c5c018d2d6fe54ff1f833dab7c562b2563212c2a
