@@ -1144,12 +1144,12 @@ cli-width@^2.0.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.1.tgz#b0433d0b4e9c847ef18868a4ef16fd5fc8271c48"
 
-client-oauth2@~4.2.0:
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/client-oauth2/-/client-oauth2-4.2.5.tgz#cee9499ef0acc84ee545a76a8a51942ddf26f473"
+client-oauth2@~4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/client-oauth2/-/client-oauth2-4.3.0.tgz#95eb1c203d41ca793e359a164cb7c28373b21b22"
   dependencies:
-    popsicle "12.0.4"
-    safe-buffer "^5.1.1"
+    popsicle "^12.0.5"
+    safe-buffer "^5.2.0"
 
 cliui@^6.0.0:
   version "6.0.0"
@@ -2976,18 +2976,18 @@ popsicle-cookie-jar@^1.0.0:
     "@types/tough-cookie" "^2.3.5"
     tough-cookie "^3.0.1"
 
-popsicle-redirects@^1.0.0:
+popsicle-redirects@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/popsicle-redirects/-/popsicle-redirects-1.1.0.tgz#2a5abb49a7ad49c02e90b24d4608dc0b8b23176a"
 
-popsicle-transport-http@^1.0.0:
+popsicle-transport-http@^1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/popsicle-transport-http/-/popsicle-transport-http-1.0.7.tgz#a20bf0dd3a42d4acd55fb9cf34e8cff47789ba49"
   dependencies:
     make-error-cause "^2.2.0"
     pump "^3.0.0"
 
-popsicle-transport-xhr@^1.0.0:
+popsicle-transport-xhr@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/popsicle-transport-xhr/-/popsicle-transport-xhr-1.0.2.tgz#aa4b7ab74d37f880cf857622cbbaf5ead3e43cb2"
 
@@ -2995,17 +2995,17 @@ popsicle-user-agent@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/popsicle-user-agent/-/popsicle-user-agent-1.0.0.tgz#976af355b605966168733c4e03ad1e4f783f5d48"
 
-popsicle@12.0.4:
-  version "12.0.4"
-  resolved "https://registry.yarnpkg.com/popsicle/-/popsicle-12.0.4.tgz#297adb1132a79fdbc54ca902645811b177f6234f"
+popsicle@^12.0.5:
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/popsicle/-/popsicle-12.0.5.tgz#3c55edf2857522e20e2e0e2ecf88c7fe02126b19"
   dependencies:
     popsicle-content-encoding "^1.0.0"
     popsicle-cookie-jar "^1.0.0"
-    popsicle-redirects "^1.0.0"
-    popsicle-transport-http "^1.0.0"
-    popsicle-transport-xhr "^1.0.0"
+    popsicle-redirects "^1.1.0"
+    popsicle-transport-http "^1.0.6"
+    popsicle-transport-xhr "^1.0.2"
     popsicle-user-agent "^1.0.0"
-    servie "^4.0.6"
+    servie "^4.3.2"
     throwback "^4.1.0"
     tough-cookie "^3.0.1"
 
@@ -3264,7 +3264,7 @@ rxjs@^6.3.3, rxjs@^6.5.3:
   dependencies:
     tslib "^1.9.0"
 
-safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@^5.1.2:
+safe-buffer@^5.0.1, safe-buffer@^5.1.2, safe-buffer@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.0.tgz#b74daec49b1148f88c64b68d49b1e815c1f2f519"
 
@@ -3298,7 +3298,7 @@ semver@^6.1.0, semver@^6.1.2, semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
 
-servie@^4.0.6:
+servie@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/servie/-/servie-4.3.2.tgz#7168140d62cb9476cb8b184fc8ceda24d5154e7e"
   dependencies:

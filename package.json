@@ -25,7 +25,7 @@
     "@babel/preset-env": "~7.9.0",
     "anilist-api-pt": "~1.0.0",
     "annict": "~0.0.8",
-    "client-oauth2": "~4.2.0",
+    "client-oauth2": "~4.3.0",
     "inquirer": "~7.1.0",
     "kitsu": "~8.3.0",
     "listr": "~0.14.0",
