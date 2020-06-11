@@ -1,16 +1,14 @@
 # Tracker Killer
 
 [![release badge]][release]
-[![david badge]][david]
-[![donate badge]][donate]
-
 [![travis badge]][travis]
-[![appveyor badge]][appveyor]
+[![david badge]][david]
+[![david dev badge]][david dev]
+
 [![cc maintainability badge]][cc maintainability]
 [![cc debt badge]][cc debt]
 [![cc issues badge]][cc issues]
 [![cc loc badge]][cc loc]
-[![david dev badge]][david dev]
 
 This was built as an experiment to see how well anime/manga tracking sites deal with ludicrously
 large libraries. As such, it currently allows testing the following:
@@ -215,9 +213,6 @@ All code released under the [MIT license]
 [travis]:https://travis-ci.org/wopian/tracker-killer
 [travis badge]:https://flat.badgen.net/travis/wopian/tracker-killer
 
-[appveyor]:https://ci.appveyor.com/project/wopian/tracker-killer
-[appveyor badge]:https://flat.badgen.net/appveyor/ci/wopian/tracker-killer
-
 [cc maintainability]:https://codeclimate.com/github/wopian/tracker-killer
 [cc maintainability badge]:https://flat.badgen.net/codeclimate/maintainability/wopian/tracker-killer
 
@@ -229,6 +224,3 @@ All code released under the [MIT license]
 
 [cc loc]:https://codeclimate.com/github/wopian/tracker-killer
 [cc loc badge]:https://flat.badgen.net/codeclimate/loc/wopian/tracker-killer
-
-[donate]:https://paypal.me/wopian
-[donate badge]:https://flat.badgen.net/badge/support%20me%20on/paypal.me/pink
