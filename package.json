@@ -26,7 +26,7 @@
     "anilist-api-pt": "~1.0.0",
     "annict": "~0.0.8",
     "client-oauth2": "~4.3.0",
-    "inquirer": "~7.2.0",
+    "inquirer": "~7.3.0",
     "kitsu": "~9.0.0",
     "listr": "~0.14.0",
     "moment": "~2.27.0",
