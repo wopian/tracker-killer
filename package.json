@@ -29,7 +29,7 @@
     "inquirer": "~7.3.0",
     "kitsu": "~9.1.0",
     "listr": "~0.14.0",
-    "moment": "~2.27.0",
+    "moment": "~2.28.0",
     "pad": "~3.2.0",
     "popura": "~1.2.5",
     "simple-node-logger": "~0.93.20",
