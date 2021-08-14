@@ -32,7 +32,7 @@
     "moment": "~2.29.0",
     "pad": "~3.2.0",
     "popura": "~1.2.5",
-    "simple-node-logger": "~0.93.20",
+    "simple-node-logger": "~21.8.0",
     "yargs": "~17.0.0",
     "zen-observable": "~0.8.9"
   },
